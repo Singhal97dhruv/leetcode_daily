@@ -13,27 +13,22 @@ class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
         
-        queue<TreeNode*>q;
-        q.push(root);
-        while(!q.empty()){
-            vector<int>temp;
-            int n=q.size();
-            for(int i=0;i<n;i++){
-                auto top=q.front();
-                q.pop();
-                if(top==NULL){
-                    temp.push_back(-101);
-                    continue;
-                }
-                temp.push_back(top->val);
-                q.push(top->left);
-                q.push(top->right);
-            }
-            for(int i=0;i<n/2;i++){
-                if(temp[i]!=temp[n-i-1])
-                return false;
-            }
+        queue<TreeNode*>q1,q2;
+        q1.push(root->left),q2.push(root->right);
+        while(!q1.empty() && !q2.empty()){
+            auto left=q1.front();
+            q1.pop();
+            auto right=q2.front();
+            q2.pop();
+            if(left==NULL && right==NULL)continue;
+            if(left==NULL || right==NULL)return false;
+            if(left->val!=right->val)return false;
+            q1.push(left->left);
+            q1.push(left->right);
+            q2.push(right->right);
+            q2.push(right->left);
         }
         return true;
+        
     }
 };
