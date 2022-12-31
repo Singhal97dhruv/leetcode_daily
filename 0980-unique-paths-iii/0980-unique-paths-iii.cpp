@@ -2,7 +2,7 @@ class Solution {
 public:
     int ways=0;
     vector<int>offset={0,1,0,-1,0};
-    void paths(vector<vector<int>>grid,int cnt,int blocks,int ii,int jj){
+    void paths(vector<vector<int>>&grid,int cnt,int blocks,int ii,int jj){
         if(ii<0 || jj<0 || ii>=grid.size()|| jj>=grid[0].size()|| grid[ii][jj]==-1)return ;
         if(grid[ii][jj]==2)
         {
@@ -16,7 +16,7 @@ public:
         for(int k=0;k<4;k++){
             paths(grid,cnt+1,blocks,ii+offset[k],jj+offset[k+1]);
         }
-        
+        grid[ii][jj]=0;
         
     }
     
