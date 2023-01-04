@@ -11,7 +11,7 @@ public:
 class Solution {
 public:
     int sum=0;
-    void dfs(unordered_map<int,Employee*>map,int id){
+    void dfs(unordered_map<int,Employee*>&map,int id){
         sum+=map[id]->importance;
         for(auto e:map[id]->subordinates){
             // sum+=e->importance;
