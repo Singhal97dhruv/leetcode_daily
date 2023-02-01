@@ -1,12 +1,9 @@
 class Solution {
-    public int gcd(int p,int q){
-        if(q==0)return p;
-        return gcd(q,p%q);
+public:
+    string gcdOfStrings(string str1, string str2) {
+        if(str1+str2==str2+str1){
+            return str1.substr(0,gcd(str1.size(),str2.size()));
+        }
+        return "";
     }
-    public String gcdOfStrings(String str1, String str2) {
-       if(!(str1+str2).equals(str2+str1))return "";
-        
-        return str1.substring(0,gcd(str1.length(),str2.length()));
-        
-    }
-}
+};
