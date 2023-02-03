@@ -7,7 +7,7 @@ public:
             int currGcd=0;
             for(int j=i;j<nums.size();j++){
                 currGcd=gcd(currGcd,nums[j]);
-                // if(currGcd<k)break;
+                if(currGcd<k || (currGcd%k!=0))break;
                 if(currGcd==k)cnt++;
             }
         }
