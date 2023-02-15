@@ -1,19 +1,16 @@
 class Solution {
-public:
-    int arrayNesting(vector<int>& nums) {
-     
+    public int arrayNesting(int[] nums) {
         int ans=0;
-        vector<bool>vis(nums.size(),false);
+        boolean vis[]=new boolean[nums.length];
         for(int i:nums){
             int cnt=0;
             while(!vis[i]){
                 cnt++;
-                    vis[i]=1;
+                vis[i]=true;
                 i=nums[i];
             }
-            ans=max(ans,cnt);
+            ans=Math.max(ans,cnt);
         }
         return ans;
-        
     }
-};
+}
