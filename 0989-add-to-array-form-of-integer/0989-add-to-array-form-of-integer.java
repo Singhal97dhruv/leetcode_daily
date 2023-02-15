@@ -1,23 +1,16 @@
 class Solution {
-public:
-    vector<int> addToArrayForm(vector<int>& num, int k) {
-        int size=num.size()-1;
-        vector<int>res;
-        while(size>=0 && k>0){
+    public List<Integer> addToArrayForm(int[] num, int k) {
+        
+        List<Integer>res=new ArrayList<>();
+        for(int i=num.length-1;i>=0;i--){
+            res.add(0,(num[i]+k)%10);
+            k=(num[i]+k)/10;
             
-            num[size]+=k;
-            k=num[size]/10;
-            num[size]%=10;
-            
-          
-            size--;
         }
         while(k>0){
-            num.emplace(num.begin(),k%10);
+            res.add(0,k%10);
             k/=10;
         }
-        
-        return num;
-        
+        return res;       
     }
-};
+}
