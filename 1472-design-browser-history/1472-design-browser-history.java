@@ -1,31 +1,30 @@
 class BrowserHistory {
-public:
-    string st[5000];
-    int prev=0,curr=0;
-    BrowserHistory(string homepage) {
-        st[curr]=homepage;
-        
+    String[] arr=new String[5000];
+    int prev,curr;
+    public BrowserHistory(String homepage) {
+            prev=0;curr=0;
+        arr[0]=homepage;
     }
     
-    void visit(string url) {
-        st[++prev]=url;curr=prev;
+    public void visit(String url) {
+        arr[++prev]=url;curr=prev;
     }
     
-    string back(int steps) {
-        prev=max(prev-steps,0);
-        return st[prev];
+    public String back(int steps) {
+        prev=Math.max(prev-steps,0);
+        return arr[prev];
     }
     
-    string forward(int steps) {
-         prev=min(prev+steps,curr);
-        return st[prev];
+    public String forward(int steps) {
+        prev=Math.min(curr,steps+prev);
+        return arr[prev];
     }
-};
+}
 
 /**
  * Your BrowserHistory object will be instantiated and called as such:
- * BrowserHistory* obj = new BrowserHistory(homepage);
- * obj->visit(url);
- * string param_2 = obj->back(steps);
- * string param_3 = obj->forward(steps);
+ * BrowserHistory obj = new BrowserHistory(homepage);
+ * obj.visit(url);
+ * String param_2 = obj.back(steps);
+ * String param_3 = obj.forward(steps);
  */
