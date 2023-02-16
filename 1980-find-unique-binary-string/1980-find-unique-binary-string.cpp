@@ -6,7 +6,9 @@ public:
             if(set.find(curr)==set.end())ans=curr;
             return;
         }
+        if(ans=="")
         unique(curr+"0",n,idx+1,set,ans);
+        if(ans=="")
         unique(curr+"1",n,idx+1,set,ans);
 
         
