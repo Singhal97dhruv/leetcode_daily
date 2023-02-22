@@ -1,31 +1,26 @@
 class Solution {
-public:
-    
-    bool feasible(int cap,int days,const vector<int>& weights){
-        int d=1;
-        int total=0;
-        for(int i:weights){
+    public boolean feasible(int cap,int[] wts,int D){
+        int total=0,d=1;
+        for(int i:wts){
             total+=i;
             if(total>cap){
                 total=i;
                 d++;
-                if(d>days)return false;
+                if(d>D)return false;
             }
         }
         return true;
     }
-    
-    int shipWithinDays(vector<int>& weights, int days) {
-        int right=accumulate(weights.begin(),weights.end(),0);
-        int left=*max_element(weights.begin(),weights.end());
+    public int shipWithinDays(int[] weights, int days) {
+        int right=0;
+        for(int i:weights)right+=i;
+        int left=0;
+        for(int i:weights)left=i>left?i:left;
         while(left<right){
             int mid=left+(right-left)/2;
-            if(feasible(mid,days,weights)){
-                right=mid;
-            
-            }
+            if(feasible(mid,weights,days)==true)right=mid;
             else left=mid+1;
         }
         return left;
     }
-};
+}
