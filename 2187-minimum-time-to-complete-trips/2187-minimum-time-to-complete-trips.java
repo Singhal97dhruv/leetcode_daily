@@ -1,19 +1,18 @@
 class Solution {
-public:
-    bool feasible(vector<int>&t,int trips,long long m){
-        long long cnt=0;
-        for(auto i:t){
-            cnt+=(m/i);
+    public boolean feasible(int[] time,int trips,long m){
+        long cnt=0;
+        for(long i:time){
+            cnt+=m/i;
         }
         return cnt>=trips;
     }
-    long long minimumTime(vector<int>& time, int totalTrips) {
-        long long left=1,right=1e14;
+    public long minimumTime(int[] time, int totalTrips) {
+        long left=0,right=100000000000000L;
         while(left<right){
-            long long mid=left+(right-left)/2;
-            if(feasible(time,totalTrips,mid))right=mid;
+            long mid=left+(right-left)/2;
+            if(feasible(time,totalTrips,mid)==true)right=mid;
             else left=mid+1;
         }
         return left;
     }
-};
+}
