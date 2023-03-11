@@ -12,26 +12,47 @@
 class FindElements {
 public:
     unordered_map<int,int>map;
-    void dfs(TreeNode*t){
-        // if(t==NULL)return;
-        // if(t->val==-1)t->val=0;
-        if(t->left){
-            t->left->val=2*t->val+1;
-            map[t->left->val]++;
-            dfs(t->left);
-        }
-        if(t->right){
-            t->right->val=2*t->val+2;
-            map[t->right->val]++;
-            dfs(t->right);
-        }
+//     void dfs(TreeNode*t){
+//         if(t->left){
+//             t->left->val=2*t->val+1;
+//             map[t->left->val]++;
+//             dfs(t->left);
+//         }
+//         if(t->right){
+//             t->right->val=2*t->val+2;
+//             map[t->right->val]++;
+//             dfs(t->right);
+//         }
         
-    }
+//     }
     
     FindElements(TreeNode* root) {
+        
+        queue<TreeNode*>q;
+        q.push(root);
         root->val=0;
         map[0]++;
-        dfs(root);
+        while(!q.empty()){
+            int n=q.size();
+            for(int i=0;i<n;i++){
+                TreeNode*t=q.front();q.pop();
+                if(t->left){
+                     t->left->val=2*t->val+1;
+                    q.push(t->left);
+                    map[t->left->val]++;
+                }
+                if(t->right){
+                     t->right->val=2*t->val+2;
+                    q.push(t->right);
+                    map[t->right->val]++;
+                }
+            }
+        }
+        
+        
+        // root->val=0;
+        // map[0]++;
+        // dfs(root);
     }
     
     bool find(int target) {
