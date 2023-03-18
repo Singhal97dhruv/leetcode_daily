@@ -1,31 +1,24 @@
 class BrowserHistory {
 public:
-    stack<string>main,temp;
+    string st[5000];
+    int prev=0,curr=0;
     BrowserHistory(string homepage) {
-        main.push(homepage);
+        st[curr]=homepage;
+        
     }
     
     void visit(string url) {
-            while(!temp.empty()){
-                temp.pop();
-            }
-            main.push(url);
+        st[++prev]=url;curr=prev;
     }
     
     string back(int steps) {
-        while(main.size()>1 && steps--){
-            string data=main.top();main.pop();
-            temp.push(data);
-        }
-        return main.top();
+        prev=max(prev-steps,0);
+        return st[prev];
     }
     
     string forward(int steps) {
-        while(!temp.empty() && steps-- ){
-            string data=temp.top();temp.pop();
-            main.push(data);
-        }
-        return main.top();
+         prev=min(prev+steps,curr);
+        return st[prev];
     }
 };
 
