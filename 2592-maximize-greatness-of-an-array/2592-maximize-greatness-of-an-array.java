@@ -1,12 +1,10 @@
 class Solution {
-public:
-    int maximizeGreatness(vector<int>& nums) {
-        
+    public int maximizeGreatness(int[] nums) {
         int res=0;
-        sort(nums.begin(),nums.end());
+        Arrays.sort(nums);
         for(int i:nums){
             if(i>nums[res])res++;
         }
         return res;
     }
-};
+}
