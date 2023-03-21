@@ -1,14 +1,18 @@
 class Solution {
-public:
-    int countPairs(vector<int>& deliciousness) {
-       unordered_map<int,int>map;
-        long long res=0;
+    public int countPairs(int[] deliciousness) {
+        HashMap<Integer,Integer>map=new HashMap<>();
+        long res=0;
+        int mod=1000000007;
         for(int i:deliciousness){
-           for(int j=1;j<=(1<<22);j*=2){
-               if(map.count(j-i))res+=map[j-i];
-           }
-            map[i]+=1;
+            for(int j=1;j<=(1<<22);j*=2){
+                if(map.containsKey(j-i)){
+                    res+=map.get(j-i);
+                    res%=mod;
+                }
+            }
+                map.put(i,map.getOrDefault(i,0)+1);
+            
         }
-        return res%(int)(1e9+7);
+        return (int)res;
     }
-};
+}
