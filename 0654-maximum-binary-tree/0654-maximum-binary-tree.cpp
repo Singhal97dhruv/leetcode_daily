@@ -11,25 +11,44 @@
  */
 class Solution {
 public:
-    int largestIdx(vector<int>&nums,int left,int right){
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        for(int i=left;i<right;i++){
-            pq.push({nums[i],i});
-            if(pq.size()>1)pq.pop();
-        }
-        return pq.top().second;
-    }
-    TreeNode* recur(vector<int>&nums,int left,int right){
-        if(left==right)return NULL;
-        int mxIdx=largestIdx(nums,left,right);
-        TreeNode*t=new TreeNode(nums[mxIdx]);
-        t->left=recur(nums,left,mxIdx);
-        t->right=recur(nums,mxIdx+1,right);
-        return t;
-    }
+    // int largestIdx(vector<int>&nums,int left,int right){
+    //     priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+    //     for(int i=left;i<right;i++){
+    //         pq.push({nums[i],i});
+    //         if(pq.size()>1)pq.pop();
+    //     }
+    //     return pq.top().second;
+    // }
+    // TreeNode* recur(vector<int>&nums,int left,int right){
+    //     if(left==right)return NULL;
+    //     int mxIdx=largestIdx(nums,left,right);
+    //     TreeNode*t=new TreeNode(nums[mxIdx]);
+    //     t->left=recur(nums,left,mxIdx);
+    //     t->right=recur(nums,mxIdx+1,right);
+    //     return t;
+    // }
     
     
     TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
-        return recur(nums,0,nums.size());
+        // return recur(nums,0,nums.size());
+        
+        stack<TreeNode*>st;
+        
+        for(int i=0;i<nums.size();i++){
+            TreeNode* curr=new TreeNode(nums[i]);
+            while(!st.empty() && st.top()->val<nums[i]){
+                curr->left=st.top();
+                st.pop();
+            }
+            if(!st.empty()){
+                st.top()->right=curr;
+                
+            }
+            st.push(curr);
+        }
+        while(st.size()>1)st.pop();
+        
+        return st.top();
+        
     }
 };
