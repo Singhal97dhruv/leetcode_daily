@@ -15,7 +15,7 @@
  */
 class Solution {
     public TreeNode constructMaximumBinaryTree(int[] nums) {
-        Stack<TreeNode>st=new Stack<>();
+        Deque<TreeNode>st=new LinkedList<>();
         for(int i=0;i<nums.length;i++){
             TreeNode t=new TreeNode(nums[i]);
             while(!st.isEmpty() && st.peek().val<nums[i]){
@@ -26,7 +26,8 @@ class Solution {
             }
             st.push(t);
         }
-        while(st.size()>1)st.pop();
-        return st.peek();
+        // while(st.size()>1)st.pop();
+        return st.isEmpty()?null:st.removeLast();
+        // return st.peek();
     }
 }
