@@ -1,5 +1,5 @@
 class Solution {
-    int [][][]dp;
+    // int [][][]dp;
 //     public int memo(int []prices,int i,int buy,int k){
 //         if(i==prices.length || k<0)return 0;
 //         if(dp[i][k][buy]!=-1)return dp[i][k][buy];
@@ -18,19 +18,20 @@ class Solution {
         //     for(int []j:i)
         //         Arrays.fill(j,-1);
         // return memo(prices,0,1,2);
-        
-        dp = new int[n+1][2][3];
+
+        int [][]curr=new int[2][3],next=new int[2][3];
         for(int i=n-1;i>=0;i--){
             for(int buy=0;buy<=1;buy++){
                 for(int k=1;k<=2;k++){
                     if(buy==1){
-                        dp[i][buy][k]=Math.max(-prices[i]+dp[i+1][0][k],dp[i+1][1][k]);
+                        curr[buy][k]=Math.max(-prices[i]+next[0][k],next[1][k]);
                     }
-                    else dp[i][buy][k]=Math.max(prices[i]+dp[i+1][1][k-1],dp[i+1][0][k]);
+                    else curr[buy][k]=Math.max(prices[i]+next[1][k-1],next[0][k]);
                 }
             }
+            next=curr;
         }
-        return dp[0][1][2];
+        return curr[1][2];
         
     }
 }
