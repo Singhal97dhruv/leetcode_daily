@@ -13,7 +13,8 @@ public:
     }
     
     bool stoneGame(vector<int>& piles) {
-        memset(dp,-1,sizeof(dp));
-        return recur(piles,0,piles.size()-1,true)>0?true:false;
+        // memset(dp,-1,sizeof(dp));
+        // return recur(piles,0,piles.size()-1,true)>0?true:false;
+        return true;
     }
 };
