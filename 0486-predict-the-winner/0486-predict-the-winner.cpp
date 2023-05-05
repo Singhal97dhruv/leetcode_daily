@@ -12,7 +12,18 @@ public:
     
     bool PredictTheWinner(vector<int>& nums) {
         int totalScore=accumulate(nums.begin(),nums.end(),0);
-        memset(dp,-1,sizeof(dp));
-        return recur(nums,0,nums.size()-1)*2-totalScore>=0?true:false;
-    }
+        memset(dp,0,sizeof(dp));
+        // return recur(nums,0,nums.size()-1)*2-totalScore>=0?true:false;
+    int n=nums.size();
+        for(int d=0;d<n;d++){
+            for(int i=0,j=d;j<n;j++,i++){
+                if(d==0)dp[j][j]=nums[i];
+                else if(d==1)dp[i][j]=max(nums[i],nums[j]);
+                else{
+                    dp[i][j]=max(nums[i]+min(dp[i+2][j],dp[i+1][j-1]),nums[j]+min(dp[i+1][j-1],dp[i][j-2]));
+                }
+            }
+        }
+        return totalScore-dp[0][n-1]*2<=0?true:false;
+}
 };
