@@ -1,11 +1,12 @@
 class Solution {
+    Map<String,List<Integer>>dp=new HashMap<>();
     public int combine(int x,int y,char c){
         if(c=='+')return x+y;
         else if(c=='-')return x-y;
         return x*y;
     }
     public List<Integer> diffWaysToCompute(String expression) {
-        
+        if(dp.containsKey(expression))return dp.get(expression);
         List<Integer>res=new ArrayList<>();
         
         boolean isNumber=true;
@@ -26,7 +27,7 @@ class Solution {
             }
         }
         if(isNumber)res.add(Integer.valueOf(expression));
-        return res;
+        return dp.compute(expression,(k,v)->res);
         
     }
 }
