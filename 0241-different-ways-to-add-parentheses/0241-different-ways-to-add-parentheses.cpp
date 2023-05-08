@@ -1,6 +1,6 @@
 class Solution {
 public:
-    
+    unordered_map<string,vector<int>>dp;
     int combine(int x,int y,char opr){
         if(opr=='+')return x+y;
         else if(opr=='-')return x-y;
@@ -14,10 +14,16 @@ public:
             
             if(expression[i]=='*'||expression[i]=='-'||expression[i]=='+'){
                 isNum=false;
-                
-                vector<int>left=diffWaysToCompute(expression.substr(0,i));
-                
-                vector<int>right=diffWaysToCompute(expression.substr(i+1));
+                vector<int>left;
+                if(dp.find(expression.substr(0,i))!=dp.end())
+                    left=dp[expression.substr(0,i)];
+                else
+                    left=diffWaysToCompute(expression.substr(0,i));
+                vector<int>right;
+                if(dp.find(expression.substr(i+1))!=dp.end())
+                    right=dp[expression.substr(i+1)];
+                else
+                    right=diffWaysToCompute(expression.substr(i+1));
                 
                 for(int x:left){
                     for(int y:right){
@@ -29,7 +35,7 @@ public:
             
         }
         if(isNum)res.push_back(stoi(expression));
-        return res;
+        return dp[expression]= res;
         
     }
 };
