@@ -1,20 +1,22 @@
 class Solution {
-public:
-   
-    int countPrimes(int n) {
-      
+    public int countPrimes(int n) {
+        
+        boolean[] sieve= new boolean[n];
+        Arrays.fill(sieve,true);
+        
         int cnt=0;
-        bool sieve[5000001]={[0 ... 5000000]=true};
+        
         for(int i=2;i<n;i++){
             if(sieve[i]==true){
                 cnt++;
-                for(long j=(long)i*i;j<=n;j=j+i){
-                    sieve[j]=false;
+                for(long j=(long)i*i;j<n;j+=i){
+                    sieve[(int)j]=false;
                 }
             }
         }
+        
         return cnt;
         
         
     }
-};
+}
