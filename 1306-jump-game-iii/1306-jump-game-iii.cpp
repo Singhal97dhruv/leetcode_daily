@@ -2,7 +2,7 @@ class Solution {
 public:
     bool canReach(vector<int>& arr, int start) {
         
-        vector<bool>seen(arr.size(),false);
+        // vector<bool>seen(arr.size(),false);
         
         queue<int>q;
         q.push(start);
@@ -12,8 +12,8 @@ public:
             int top=q.front();
             q.pop();
             
-            if(seen[top])continue;
-            seen[top]=true;
+            if(arr[top]==-1)continue;
+            
             if(arr[top]==0)return true;
             
              int rightIdx=top+arr[top];
@@ -21,6 +21,8 @@ public:
             
             int leftIdx=top-arr[top];
             if(leftIdx>=0)q.push(leftIdx);
+            
+            arr[top]=-1;
 
         }
         
