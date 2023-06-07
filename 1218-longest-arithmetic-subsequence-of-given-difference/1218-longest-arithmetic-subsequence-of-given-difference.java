@@ -1,13 +1,12 @@
 class Solution {
-public:
-    int longestSubsequence(vector<int>& arr, int difference) {
+    public int longestSubsequence(int[] arr, int difference) {
         
-        unordered_map<int,int>map;
+        Map<Integer,Integer>map=new HashMap<>();
         int ans=1;
-        for(int &i:arr){
-            ans=max(ans,map[i]=1+map[i-difference]);
+        for(int i:arr){
+            map.put(i,map.getOrDefault(i-difference,0)+1);
+            ans=Math.max(ans,map.get(i));
         }
         return ans;
-        
     }
-};
+}
