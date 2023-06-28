@@ -13,17 +13,17 @@ public:
         
 //     }
     
-    int dp[100001][2];
+    // int dp[100001][2];
     
-    int recur(vector<int>&nums,int i,bool taken){
+//     int recur(vector<int>&nums,int i,bool taken){
 
-        if(i>=nums.size())return taken?0:-1e5;
-        if(dp[i][taken]!=-1)return dp[i][taken];
-        if(taken)return dp[i][taken]= max(0,nums[i]+recur(nums,i+1,true));
+//         if(i>=nums.size())return taken?0:-1e5;
+//         if(dp[i][taken]!=-1)return dp[i][taken];
+//         if(taken)return dp[i][taken]= max(0,nums[i]+recur(nums,i+1,true));
         
-        else return dp[i][taken]= max(recur(nums,i+1,false),nums[i]+recur(nums,i+1,true));
+//         else return dp[i][taken]= max(recur(nums,i+1,false),nums[i]+recur(nums,i+1,true));
         
-    }
+//     }
     
     
     int maxSubArray(vector<int>& nums) {
@@ -39,8 +39,16 @@ public:
 //         }
 //         return dp[0][nums.size()-1];
         
-        memset(dp,-1,sizeof(dp));
-        return recur(nums,0,false);
-        
+        // memset(dp,-1,sizeof(dp));
+        // return recur(nums,0,false);
+        int n=nums.size();
+        vector<vector<int>>dp(2,vector<int>(nums.size()+1));
+        dp[0][n]=-1e5;
+        dp[1][n]=0;
+        for(int i=n-1;i>=0;i--){
+            dp[0][i]=max(dp[0][i+1],nums[i]+dp[1][i+1]);
+            dp[1][i]=max(0,nums[i]+dp[1][i+1]);
+        }
+        return max(dp[0][0],dp[0][1]);
     }
 };
