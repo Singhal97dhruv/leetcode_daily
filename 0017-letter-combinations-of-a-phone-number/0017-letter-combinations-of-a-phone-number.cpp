@@ -1,0 +1,47 @@
+class Solution {
+public:
+//     const vector<string>pad={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    
+    vector<string>offset={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    
+    vector<string>res;
+    
+    void recur(string s,int st,string dig){
+        if(st==dig.size()){
+            res.push_back(s);
+            return;
+        }
+        int idx=dig[st]-'0';
+        int n=offset[idx].size();
+        
+        for(int i=0;i<n;i++){
+            s+=offset[idx][i];
+            recur(s,st+1,dig);
+            s.pop_back();
+        }
+        
+        
+    }
+    
+    
+    
+    vector<string> letterCombinations(string digits) {
+//         if(digits.empty())return {};
+//         vector<string>result;
+//         result.push_back("");
+//         for(auto nums:digits){
+//             vector<string>temp;
+//             for(auto can:pad[nums-'0'])
+//                 for(auto s:result)
+//                     temp.push_back(s+can);
+//         swap(result,temp);
+//         }
+        
+//         return result;
+        
+        if(digits.size()==0)return {};
+        recur("",0,digits);
+        return res;
+        
+    }
+};
