@@ -2,7 +2,6 @@ class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
         
-        vector<int>res;
         stack<int>st;
         
         for(int i=0;i<asteroids.size();i++){
@@ -21,10 +20,11 @@ public:
             }
         }
         
-        while(!st.empty()){
-            res.push_back(st.top());st.pop();
+        vector<int>res(st.size());
+        for(int i=st.size()-1;i>=0;i--){
+            res[i]=st.top();st.pop();
         }
-        reverse(res.begin(),res.end());
+
         return res;
         
         
