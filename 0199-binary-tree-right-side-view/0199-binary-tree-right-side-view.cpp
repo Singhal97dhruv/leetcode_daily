@@ -22,26 +22,38 @@ public:
     //     recursion(ptr->left,level+1,v);
     // }
     
-    
+    vector<int>res;
+    void recur(TreeNode*t,int lev){
+        if(!t)return;
+        if(lev==res.size())res.resize(lev+1);
+        res[lev]=t->val;
+        recur(t->left,lev+1);
+        recur(t->right,lev+1);
+    }    
     vector<int> rightSideView(TreeNode* root) {
         // vector<int>v;
         // recursion(root,1,v);
         // return v;
+        // if(!root)return {};
+        // vector<int>res;
+        // queue<TreeNode*>q;
+        // q.push(root);
+        // while(!q.empty()){
+        //     int n=q.size();
+        //     vector<int>temp;
+        //     for(int i=0;i<n;i++){
+        //         TreeNode*top=q.front();q.pop();
+        //         temp.push_back(top->val);
+        //         if(top->left)q.push(top->left);
+        //         if(top->right)q.push(top->right);
+        //     }
+        //     res.push_back(temp.back());
+        // }
+        // return res;
+        
+        // REcursive way 
         if(!root)return {};
-        vector<int>res;
-        queue<TreeNode*>q;
-        q.push(root);
-        while(!q.empty()){
-            int n=q.size();
-            vector<int>temp;
-            for(int i=0;i<n;i++){
-                TreeNode*top=q.front();q.pop();
-                temp.push_back(top->val);
-                if(top->left)q.push(top->left);
-                if(top->right)q.push(top->right);
-            }
-            res.push_back(temp.back());
-        }
+        recur(root,0);
         return res;
         
     }
