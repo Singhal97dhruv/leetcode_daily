@@ -21,30 +21,47 @@ public:
 
 class Solution {
 public:
+    
+    // unordered_map<Node*,Node*>map;
+    
     Node* cloneGraph(Node* node) {
 if(!node){
     return NULL;
 }        
-        Node*copy=new Node(node->val,{});
-        copies[node]=copy;
-        queue<Node*>todo;
-        todo.push(node);
-        while(!todo.empty()){
-            Node*cur=todo.front();
-            todo.pop();
-            for(Node*neighbor:cur->neighbors){
-                if(copies.find(neighbor)==copies.end()){
-                    copies[neighbor]=new Node(neighbor->val,{});
-                    todo.push(neighbor);
+//         Node*copy=new Node(node->val,{});
+//         copies[node]=copy;
+//         queue<Node*>todo;
+//         todo.push(node);
+//         while(!todo.empty()){
+//             Node*cur=todo.front();
+//             todo.pop();
+//             for(Node*neighbor:cur->neighbors){
+//                 if(copies.find(neighbor)==copies.end()){
+//                     copies[neighbor]=new Node(neighbor->val,{});
+//                     todo.push(neighbor);
+//                 }
+//             copies[cur]->neighbors.push_back(copies[neighbor]);
+//             }
+//         }
+//         return copy;
+        
+        Node*dup=new Node(node->val);
+        
+        copies[node]=dup;
+        queue<Node*>q;
+        q.push(node);
+        while(!q.empty()){
+            Node*temp=q.front();q.pop();
+            for(Node*v:temp->neighbors){
+                if(copies.find(v)==copies.end()){
+                    copies[v]=new Node(v->val,{});
+                    q.push(v);
                 }
-            copies[cur]->neighbors.push_back(copies[neighbor]);
+                copies[temp]->neighbors.push_back(copies[v]);
             }
         }
-        return copy;
         
-        
-        
-        
+        return dup;
     }
 private:
     unordered_map<Node*,Node*>copies;
