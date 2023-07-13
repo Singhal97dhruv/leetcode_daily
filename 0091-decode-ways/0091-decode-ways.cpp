@@ -12,7 +12,7 @@ public:
     // }
     
     
-    int dp[101]={[0 ... 100]=-1};
+    int dp[101]={[0 ... 100]=0};
     
     int decoding(int idx,string s){
         if(idx>=s.size())return 1;
@@ -34,6 +34,24 @@ public:
        //  vector<int>mem(s.size()+1,-1);
        //  mem[s.size()]=1;
        // return s.size()==0?0:numDecodings(0,s,mem);
-        return decoding(0,s);
+        // return decoding(0,s);
+        
+        int n=s.size();
+        dp[n]=1;
+        for(int i=n-1;i>=0;i--){
+            
+            if(s[i]=='0')dp[i]=0;
+            else {
+                dp[i]=dp[i+1];   
+                 if( i<n-1 && (s[i]<'2' ||(s[i]=='2' && s[i+1]<'7'))){
+                dp[i]+=dp[i+2];
+                }
+            }
+           
+        }
+        return dp[0];
+        
+        
+        
     }
 };
