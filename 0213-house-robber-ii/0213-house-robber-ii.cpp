@@ -34,9 +34,21 @@ public:
         //     dp[i][1]=max(nums[i]+dp[i+2][1],dp[i+1][1]);
         // }
         // return max(dp[0][1],dp[0][0]);
-        memset(dp,-1,sizeof(dp));
-        return robbing(nums,0,false);
         
+        // memset(dp,-1,sizeof(dp));
+        // return robbing(nums,0,false);
+        
+        memset(dp,0,sizeof(dp));
+        int n=nums.size();
+        dp[n-1][0]=nums[n-1];
+        for(int i=n-2;i>=0;i--){
+            if(i==0)dp[i][0]=dp[i+1][0];
+            else{
+            dp[i][0]=max(nums[i]+dp[i+2][0],dp[i+1][0]);
+            }
+            dp[i][1]=max(nums[i]+dp[i+2][1],dp[i+1][1]);
+        }
+        return max(dp[0][0],dp[0][1]);
         
     }
 };
