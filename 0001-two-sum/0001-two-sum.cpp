@@ -28,18 +28,26 @@ public:
 //         }
         
         
-     unordered_map<int,int>map;
-        vector<int>ans;
+     // unordered_map<int,int>map;
+     //    vector<int>ans;
+     //    for(int i=0;i<nums.size();i++){
+     //        if(map[target-nums[i]]>0){
+     //            ans.push_back(i);
+     //            ans.push_back(map[target-nums[i]]-1);
+     //        }
+     //        map[nums[i]]=i+1;
+     //    }
+        
+        unordered_map<int,int>map;
         for(int i=0;i<nums.size();i++){
             if(map[target-nums[i]]>0){
-                ans.push_back(i);
-                ans.push_back(map[target-nums[i]]-1);
+                return {map[target-nums[i]]-1,i};
             }
             map[nums[i]]=i+1;
         }
+        return {};
         
         
-        
-        return ans;
+        // return ans;
     }
 };
