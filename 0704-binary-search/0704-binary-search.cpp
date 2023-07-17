@@ -8,6 +8,7 @@ public:
 //         else return binary_search(vect,left,mid-1,tar);
         
 //     }
+    
     int search(vector<int>& nums, int target) {
        //  int left=0;
        //  int right=nums.size()-1;
@@ -19,20 +20,29 @@ public:
        //  }
        //  return nums[left]==target?left:-1;
         
-        int left=0,right=nums.size();
+//         int left=0,right=nums.size()-1;
         
-        while(left<right){
-            int mid=left+(right-left)/2;
+//         while(left<right){
+//             int mid=left+(right-left)/2;
             
+//             if(nums[mid]==target)return mid;
+            
+//             if(nums[mid]<target)left=mid+1;
+            
+//             else right=mid;
+            
+//         }
+        
+//         return -1;
+        
+        int l=0,r=nums.size()-1;
+        while(l<r){
+            int mid=l+(r-l)/2;
             if(nums[mid]==target)return mid;
-            
-            if(nums[mid]<target)left=mid+1;
-            
-            else right=mid;
-            
+            else if(target<nums[mid])r=mid;
+            else l=mid+1;
         }
-        
-        return -1;
+        return nums[l]==target?l:-1;
         
     }
 };
