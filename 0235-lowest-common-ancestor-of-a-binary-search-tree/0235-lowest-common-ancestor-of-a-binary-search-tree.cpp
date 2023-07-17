@@ -28,28 +28,32 @@ public:
         // }
         // return root;
         
+        if(root->val>p->val && root->val>q->val)return lowestCommonAncestor(root->left,p,q);
+        else if(root->val<p->val && root->val<q->val)return lowestCommonAncestor(root->right,p,q);
+        return root;
         
-        queue<TreeNode*>qq;
-        qq.push(root);
-        while(!qq.empty()){
-            
-            int n=qq.size();
-            for(int i=0;i<n;i++){
-
-                TreeNode*t=qq.front();qq.pop();
-
-                if(t->val>p->val && t->val>q->val){
-                    qq.push(t->left);
-                }
-                else if(t->val<p->val && t->val<q->val){
-                    qq.push(t->right);
-                }
-                else return t;
-            }
-            
-            
-        }
         
-    return nullptr;
+//         queue<TreeNode*>qq;
+//         qq.push(root);
+//         while(!qq.empty()){
+            
+//             int n=qq.size();
+//             for(int i=0;i<n;i++){
+
+//                 TreeNode*t=qq.front();qq.pop();
+
+//                 if(t->val>p->val && t->val>q->val){
+//                     qq.push(t->left);
+//                 }
+//                 else if(t->val<p->val && t->val<q->val){
+//                     qq.push(t->right);
+//                 }
+//                 else return t;
+//             }
+            
+            
+//         }
+        
+//     return nullptr;
     }
 };
