@@ -28,10 +28,7 @@ public:
         // }
         // return root;
         
-        if(root->val>p->val && root->val>q->val)return lowestCommonAncestor(root->left,p,q);
-        else if(root->val<p->val && root->val<q->val)return lowestCommonAncestor(root->right,p,q);
-        return root;
-        
+       
         
 //         queue<TreeNode*>qq;
 //         qq.push(root);
@@ -55,5 +52,22 @@ public:
 //         }
         
 //     return nullptr;
+        
+        
+        queue<TreeNode*>Q;
+        Q.push(root);
+        while(!Q.empty()){
+            TreeNode*top=Q.front();Q.pop();
+            if(top->val<p->val && top->val<q->val){
+                Q.push(top->right);
+            }
+            else if(top->val>p->val && top->val>q->val){
+                Q.push(top->left);
+            }
+            else
+            return top;
+        }
+        return NULL;
+        
     }
 };
