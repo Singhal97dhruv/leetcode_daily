@@ -23,23 +23,42 @@ public:
         // return false;
         
         
-        stack<char>st;
+//         stack<char>st;
         
-        for(char c:s){
+//         for(char c:s){
             
-            if(c=='(' || c=='{' || c=='['){
-                if(c=='(')st.push(')');
-                if(c=='{')st.push('}');
-                if(c=='[')st.push(']');
+//             if(c=='(' || c=='{' || c=='['){
+//                 if(c=='(')st.push(')');
+//                 if(c=='{')st.push('}');
+//                 if(c=='[')st.push(']');
+//             }
+//             else if(!st.empty() && st.top()==c){
+//                 st.pop();
+//             }
+//             else return false;
+            
+//         }
+//         if(!st.empty())return false;
+//         return true;
+        
+        
+        stack<char>stk;
+        for(char c:s){
+            if(c==']' || c=='}' || c==')'){
+                if(stk.empty())return false;
+                if(stk.top()==c)stk.pop();
+                else return false;
             }
-            else if(!st.empty() && st.top()==c){
-                st.pop();
+            
+            else{
+                if(c=='{')stk.push('}');
+                else if(c=='[')stk.push(']');
+                else if(c=='(')stk.push(')');
+
             }
-            else return false;
             
         }
-        if(!st.empty())return false;
-        return true;
+        return stk.empty();
         
         
         
