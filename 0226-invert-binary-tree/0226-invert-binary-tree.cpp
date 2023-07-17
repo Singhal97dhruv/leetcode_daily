@@ -19,11 +19,19 @@ public:
         // return root;  
         
         
-        if(!root)return nullptr;
-        TreeNode*t=root->right;
+        // if(!root)return nullptr;
+        // TreeNode*t=root->right;
+        // root->right=invertTree(root->left);
+        // root->left=invertTree(t);
+        // return root;
+        
+        
+        if(!root)return NULL;
+        TreeNode*ptr=root->right;
         root->right=invertTree(root->left);
-        root->left=invertTree(t);
+        root->left=invertTree(ptr);
         return root;
+        
         
     }
 };
