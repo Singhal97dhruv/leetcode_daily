@@ -10,6 +10,9 @@
  */
 class Solution {
 public:
+    
+    
+    
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         
         // ListNode*temp=new ListNode();
@@ -38,32 +41,44 @@ public:
         // }
         // return p->next;
         
-        ListNode*l1=list1,*l2=list2;
-        ListNode*res=new ListNode(0);
-        ListNode*ans=res;
-        while(l1 && l2){
-            if(l1->val<l2->val){
-                res->next=new ListNode(l1->val);
-                l1=l1->next;
-                res=res->next;
-            }
-            else{
-                res->next=new ListNode(l2->val);
-                l2=l2->next;
-                res=res->next;
-            }
+//         ListNode*l1=list1,*l2=list2;
+//         ListNode*res=new ListNode(0);
+//         ListNode*ans=res;
+//         while(l1 && l2){
+//             if(l1->val<l2->val){
+//                 res->next=new ListNode(l1->val);
+//                 l1=l1->next;
+//                 res=res->next;
+//             }
+//             else{
+//                 res->next=new ListNode(l2->val);
+//                 l2=l2->next;
+//                 res=res->next;
+//             }
+//         }
+//         while(l1){
+//             res->next=new ListNode(l1->val);
+//             l1=l1->next;
+//             res=res->next;
+//         }
+//         while(l2){
+//             res->next=new ListNode(l2->val);
+//             l2=l2->next;
+//             res=res->next;
+//         }
+//         return ans->next;
+        
+        
+        if(list1==NULL)return list2;
+        if(list2==NULL)return list1;
+        
+        if(list1->val<list2->val){
+            list1->next=mergeTwoLists(list1->next,list2);
+            return list1;
         }
-        while(l1){
-            res->next=new ListNode(l1->val);
-            l1=l1->next;
-            res=res->next;
-        }
-        while(l2){
-            res->next=new ListNode(l2->val);
-            l2=l2->next;
-            res=res->next;
-        }
-        return ans->next;
+        
+        list2->next=mergeTwoLists(list1,list2->next);
+        return list2;
         
         
         
