@@ -26,12 +26,24 @@ public:
         // return root;
         
         
-        if(!root)return NULL;
-        TreeNode*ptr=root->right;
-        root->right=invertTree(root->left);
-        root->left=invertTree(ptr);
+//         if(!root)return NULL;
+//         TreeNode*ptr=root->right;
+//         root->right=invertTree(root->left);
+//         root->left=invertTree(ptr);
+//         return root;
+        
+        
+        stack<TreeNode*>stk;
+        stk.push(root);
+        while(!stk.empty()){
+            TreeNode*f=stk.top();stk.pop();
+            if(f){
+                stk.push(f->left);
+                stk.push(f->right);
+                swap(f->left,f->right);
+            }
+        }
+        
         return root;
-        
-        
     }
 };
