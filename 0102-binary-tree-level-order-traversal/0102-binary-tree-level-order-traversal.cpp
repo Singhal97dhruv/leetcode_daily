@@ -22,13 +22,20 @@ public:
     
     vector<vector<int>>res;
     
-    void traverse(TreeNode*root,int lev){
-        if(!root)return ;
-        if(lev==res.size())res.resize(lev+1);
-        res[lev].push_back(root->val);
-        traverse(root->left,lev+1);
-        traverse(root->right,lev+1);
+//     void traverse(TreeNode*root,int lev){
+//         if(!root)return ;
+//         if(lev==res.size())res.resize(lev+1);
+//         res[lev].push_back(root->val);
+//         traverse(root->left,lev+1);
+//         traverse(root->right,lev+1);
         
+//     }
+    void dfs(TreeNode*t,int k){
+        if(t==NULL)return;
+        if(k==res.size())res.resize(k+1);
+        res[k].push_back(t->val);
+        dfs(t->left,k+1);
+        dfs(t->right,k+1);
     }
     
     
@@ -56,25 +63,27 @@ public:
 //             res.push_back(temp);
 //         }
 //         return res;
-        // if(!root)return {};
-        // traverse (root,0);
-        // return res;
         if(!root)return {};
-        queue<TreeNode*>q;
-        vector<vector<int>>res;
-        q.push(root);
-        while(!q.empty()){
-            int n=q.size();
-            vector<int>temp;
-            for(int i=0;i<n;i++){
-                TreeNode*t=q.front();q.pop();
-                temp.push_back(t->val);
-                if(t->left)q.push(t->left);
-                if(t->right)q.push(t->right);
-            }
-            res.push_back(temp);
-        }
+        dfs (root,0);
         return res;
+        
+        
+        // if(!root)return {};
+        // queue<TreeNode*>q;
+        // vector<vector<int>>res;
+        // q.push(root);
+        // while(!q.empty()){
+        //     int n=q.size();
+        //     vector<int>temp;
+        //     for(int i=0;i<n;i++){
+        //         TreeNode*t=q.front();q.pop();
+        //         temp.push_back(t->val);
+        //         if(t->left)q.push(t->left);
+        //         if(t->right)q.push(t->right);
+        //     }
+        //     res.push_back(temp);
+        // }
+        // return res;
         
         
     }
