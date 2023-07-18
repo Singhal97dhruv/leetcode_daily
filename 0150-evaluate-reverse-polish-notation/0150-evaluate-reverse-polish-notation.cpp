@@ -32,39 +32,20 @@ public:
 
         // };
         
-        // stack<int>st;
-        // for(string c:tokens){
-        //     if(c=="*" || c=="-" || c=="/" || c=="+"){
-        //         int s1=st.top();
-        //         st.pop();
-        //         int s2=st.top();
-        //         st.pop();
-        //         st.push(map[c](s2,s1));
-        //         // int cal=s2 stoi(c) s1;
-        //         // st.push(cal);
-        //     }
-        //     else{
-        //         st.push(stoi(c));
-        //     }
-        // }
-        // return st.top();
-        
-        stack<long long>stk;
-        for(auto ss:tokens){
-            if(ss!="+" && ss!="-" && ss!="*" && ss!="/")stk.push(stoi(ss));
-            
+      stack<int>stk;
+        for(int i=0;i<tokens.size();i++){
+            if(tokens[i]!="+" && tokens[i]!="*" && tokens[i]!="/" && tokens[i]!="-"){
+                stk.push(stoi(tokens[i]));
+            }
             else{
-                long long a=stk.top();
-                stk.pop();
-                long long b=stk.top();
-                stk.pop();
-                if(ss=="+")stk.push(a+b);
-                else if(ss=="*")stk.push(a*b);
-                else if(ss=="/")stk.push(b/a);
-                else if(ss=="-")stk.push(b-a);
+                int x=stk.top();stk.pop();
+                int y=stk.top();stk.pop();
+                if(tokens[i]=="+")stk.push(x+y);
+                else if(tokens[i]=="/")stk.push(y/x);
+                else if(tokens[i]=="*")stk.push(x*y);
+                else if(tokens[i]=="-")stk.push(y-x);
 
             }
-            
         }
         return stk.top();
         
