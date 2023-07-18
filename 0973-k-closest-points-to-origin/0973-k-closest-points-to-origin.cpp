@@ -37,15 +37,16 @@ public:
 //         return res;
         
         priority_queue<pair<int,pair<int,int>>>pq;
-        for(vector<int>&v:points){
-            int dis=v[0]*v[0]+v[1]*v[1];
-            pq.push({dis,{v[0],v[1]}});
+        for(int i=0;i<points.size();i++){
+            int x=points[i][0],y=points[i][1],dis=x*x + y*y;
+            pq.push({dis,{x,y}});
+            
             if(pq.size()>k)pq.pop();
+            
         }
         vector<vector<int>>res;
         while(!pq.empty()){
-            auto f=pq.top();pq.pop();
-            res.push_back({f.second.first,f.second.second});
+            res.push_back({pq.top().second.first,pq.top().second.second});pq.pop();
         }
         return res;
     }
