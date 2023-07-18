@@ -24,28 +24,29 @@ public:
 //         }
         
 //         return res;
-        
-        vector<vector<int>>ans;
         int n=nums.size();
-        sort(nums.begin(),nums.end());
+     sort(nums.begin(),nums.end());
+        vector<vector<int>>res;
         for(int i=0;i<n-2;i++){
             int target=-nums[i];
-            int l=i+1,r=n-1;
-            while(l<r){
-                int mid=l+(r-l)/2,sum=nums[l]+nums[r];
-                if(sum>target)
-                    r--;
-                else if(sum<target)
-                    l++;
-                else{
-                    ans.push_back({nums[i],nums[l],nums[r]});
-                    int x=nums[l],y=nums[r];
-                    while(l<r && nums[l]==x)l++;
-                    while(l<r && nums[r]==y)r--;
+            int left=i+1,right=n-1;
+            while(left<right){
+                int sum=nums[left]+nums[right];
+                if(sum==target){
+                    res.push_back({nums[i],nums[left],nums[right]});
+                    
+                    while(left<right && nums[left]==nums[left+1])left++;
+                    while(left<right && nums[right]==nums[right-1])right--;
+                    left++,right--;
+                    
                 }
+                else if(target<sum){
+                    right--;
+                }
+                else left++;
             }
-            while(i+1<r && nums[i]==nums[i+1])i++;
+            while(i<n-2 && nums[i]==nums[i+1])i++;
         }
-        return ans;
+        return res;
     }
 };
