@@ -20,15 +20,15 @@ public:
     // }
     
     
-    TreeNode*lca(TreeNode*root,TreeNode*l,TreeNode*r){
-        if(!root)return NULL;
-        if(root==l ||root==r)return root;
-        TreeNode*left=lca(root->left,l,r);
-        TreeNode*right=lca(root->right,l,r);
-        if(left && right)return root;
-        if(!left && !right)return NULL;
-        return left?left:right;
-    }
+  TreeNode*lca(TreeNode*root,TreeNode*p,TreeNode*q){
+      if(!root)return NULL;
+      if(root==p || root==q)return root;
+      TreeNode*p1=lca(root->left,p,q);
+      TreeNode*p2=lca(root->right,p,q);
+      if(p1 && p2)return root;
+      if(p1==NULL && p2==NULL)return NULL;
+      return p1?p1:p2;
+  }
     
     
     
