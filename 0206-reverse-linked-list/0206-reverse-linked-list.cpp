@@ -11,7 +11,7 @@
 class Solution {
 public:
     ListNode*p;
-    ListNode* reverseList(ListNode* head) {
+    ListNode* reverseList(ListNode* head, ListNode*nextNode=NULL,ListNode*prevNode=NULL) {
      
         // ListNode*dummy=new ListNode(0);
         // dummy->next=head;
@@ -43,23 +43,24 @@ public:
 //         return f;
         
         
-        ListNode*forw=head,*ptr=head,*prev=NULL;
-        while (forw){
-            if(forw->next){
-                forw=forw->next;
-                ptr->next=prev;
-                prev=ptr;
-                ptr=forw;
-            }
-            else{
-                ptr->next=prev;
-                break;
-            }
-        }
-        return ptr;
+        // ListNode*forw=head,*ptr=head,*prev=NULL;
+        // while (forw){
+        //     if(forw->next){
+        //         forw=forw->next;
+        //         ptr->next=prev;
+        //         prev=ptr;
+        //         ptr=forw;
+        //     }
+        //     else{
+        //         ptr->next=prev;
+        //         break;
+        //     }
+        // }
+        // return ptr;
         
        
         
+        return head? reverseList(head->next,(head->next=prevNode,nextNode),head ):prevNode;
         
         
         
