@@ -19,14 +19,24 @@ public:
     // }
     
 
-    bool isValid(TreeNode*t,TreeNode*mn,TreeNode*mx){
+//     bool isValid(TreeNode*t,TreeNode*mn,TreeNode*mx){
+//         if(!t)return true;
+        
+//         if(mn && t->val<=mn->val || mx && t->val>=mx->val)return false;
+        
+//         return isValid(t->left,mn,t)&&isValid(t->right,t,mx);
+        
+//     }
+    
+    bool isValid(TreeNode*t, TreeNode*mn , TreeNode*mx){
         if(!t)return true;
         
-        if(mn && t->val<=mn->val || mx && t->val>=mx->val)return false;
+        if(mn && t->val<=mn->val || mx && t->val>=mx->val )return false;
         
-        return isValid(t->left,mn,t)&&isValid(t->right,t,mx);
+        return isValid(t->left,mn,t) && isValid(t->right,t,mx);
         
     }
+    
     
     
     bool isValidBST(TreeNode* root) {
