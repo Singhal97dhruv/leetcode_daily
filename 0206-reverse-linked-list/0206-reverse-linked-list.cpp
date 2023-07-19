@@ -10,6 +10,7 @@
  */
 class Solution {
 public:
+    ListNode*p;
     ListNode* reverseList(ListNode* head) {
      
         // ListNode*dummy=new ListNode(0);
@@ -24,22 +25,42 @@ public:
         // return dummy->next;
         
         
-        ListNode*prev=NULL,*f=head,*curr=head;
-        while(f){
-            if(f->next){
-                curr=f;
-                f=f->next;
-                curr->next=prev;
-                prev=curr;
-                curr=f;
+//         ListNode*prev=NULL,*f=head,*curr=head;
+//         while(f){
+//             if(f->next){
+//                 curr=f;
+//                 f=f->next;
+//                 curr->next=prev;
+//                 prev=curr;
+//                 curr=f;
+//             }
+//             else{
+//                 curr->next=prev;
+//                 break;
+//             }
+//         }
+        
+//         return f;
+        
+        
+        ListNode*forw=head,*ptr=head,*prev=NULL;
+        while (forw){
+            if(forw->next){
+                forw=forw->next;
+                ptr->next=prev;
+                prev=ptr;
+                ptr=forw;
             }
             else{
-                curr->next=prev;
+                ptr->next=prev;
                 break;
             }
         }
+        return ptr;
         
-        return f;
+       
+        
+        
         
         
     }
