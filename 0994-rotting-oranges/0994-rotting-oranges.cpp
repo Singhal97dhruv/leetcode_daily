@@ -37,35 +37,35 @@ public:
         
         vector<int>offset{0,1,0,-1,0};
         queue<pair<int,int>>q;
-        int freshOranges=0;
-        for(int i=0;i<grid.size();i++){
+        int fresh=0;
+        for(int i=0;i<grid.size();++i){
             for(int j=0;j<grid[0].size();j++){
+                if(grid[i][j]==1)fresh++;
                 if(grid[i][j]==2)q.push({i,j});
-                if(grid[i][j]==1)freshOranges++;
             }
         }
         
-        int timeTaken=0;
-        while(!q.empty() && freshOranges){
+        int Time=0;
+        
+        while(!q.empty() && fresh){
             int n=q.size();
-            timeTaken++;
+            Time++;
             for(int i=0;i<n;i++){
-                auto [s,t]=q.front();q.pop();
+                auto [x,y]=q.front();q.pop();
+                
                 for(int k=0;k<4;k++){
-                    int nr=s+offset[k],nc=t+offset[k+1];
-                    if(nr<0 || nc<0 || nr>=grid.size() || nc>=grid[0].size()|| grid[nr][nc]!=1)continue;
-                    if(grid[nr][nc]==1)freshOranges--;
+                    int nr=x+offset[k],nc=y+offset[k+1];
+                    if(nr<0 || nc<0 || nr>=grid.size() || nc>=grid[0].size() || grid[nr][nc]!=1)continue;
+                    fresh--;
                     grid[nr][nc]=2;
                     q.push({nr,nc});
                 }
+                
             }
+            
         }
         
-        
-        return freshOranges?-1:timeTaken;
-        
-        
-        
+        return fresh?-1:Time;
         
         
     }
