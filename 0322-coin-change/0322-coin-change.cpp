@@ -31,18 +31,30 @@ public:
         // int minCoins = tabulation(coins, amount, coins.size());
         // return minCoins == INT_MAX - 1 ? -1 : minCoins;    
         
-        int Max=amount+1;
-        vector<int>dp(amount+1,Max);
+        // int Max=amount+1;
+        // vector<int>dp(amount+1,Max);
+        // dp[0]=0;
+        // for(int i=1;i<=amount;i++){
+        //     for(int j=0;j<coins.size();j++){
+        //         if(i>=coins[j]){
+        //             dp[i]=min(dp[i],dp[i-coins[j]]+1);
+        //         }
+        //     }
+        // }
+        // return dp[amount]>amount?-1:dp[amount];
+        
+        int Mx=amount+1;
+        vector<int>dp(amount+1,Mx);
         dp[0]=0;
         for(int i=1;i<=amount;i++){
-            for(int j=0;j<coins.size();j++){
-                if(i>=coins[j]){
-                    dp[i]=min(dp[i],dp[i-coins[j]]+1);
+            for(int j:coins){
+                if(j<=i){
+                    dp[i]=min(dp[i],dp[i-j]+1);
                 }
             }
         }
-        return dp[amount]>amount?-1:dp[amount];
         
+        return dp[amount]==Mx?-1:dp[amount];
     }
 
 };
