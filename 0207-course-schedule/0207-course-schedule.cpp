@@ -19,19 +19,19 @@ public:
         
 //     }
     
-    bool isCycleExist(vector<int>adj[],vector<int>&vis,int st){
-        if(vis[st]==1)return true;
+//     bool isCycleExist(vector<int>adj[],vector<int>&vis,int st){
+//         if(vis[st]==1)return true;
         
-        if(vis[st]==0){
-            vis[st]=1;
-        for(auto &v: adj[st]){
-            if(isCycleExist(adj,vis,v))return true;
-        }
+//         if(vis[st]==0){
+//             vis[st]=1;
+//         for(auto &v: adj[st]){
+//             if(isCycleExist(adj,vis,v))return true;
+//         }
         
-        vis[st]=2;
-        }
-        return false;
-    }
+//         vis[st]=2;
+//         }
+//         return false;
+//     }
     
     
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
@@ -89,17 +89,35 @@ public:
 //         return numCourses==0?true:false;
         
         
+//         vector<int>adj[numCourses];
+//         vector<int>vis(numCourses);
+//         for(int i=0;i<prerequisites.size();i++){
+//             adj[prerequisites[i][1]].push_back(prerequisites[i][0]);
+//         }
+//         for(int i=0;i<numCourses;i++){
+//             if(isCycleExist(adj,vis,i))return false;
+//         }
+//         return true;
+        
+        
         vector<int>adj[numCourses];
-        vector<int>vis(numCourses);
+        vector<int>deg(numCourses,0);
+        queue<int>q;
         for(int i=0;i<prerequisites.size();i++){
             adj[prerequisites[i][1]].push_back(prerequisites[i][0]);
+            deg[prerequisites[i][0]]++;
         }
         for(int i=0;i<numCourses;i++){
-            if(isCycleExist(adj,vis,i))return false;
+            if(deg[i]==0)q.push(i);
         }
-        return true;
-        
-        
+        while(!q.empty()){
+            int u=q.front();q.pop();
+            for(auto &v: adj[u]){
+                if(--deg[v]==0)q.push(v);
+            }
+            numCourses--;
+        }
+        return numCourses==0?true:false;
         
     }
 };
