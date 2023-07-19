@@ -1,45 +1,39 @@
 class Trie {
-    
     vector<Trie*>children;
     bool isEnd;
-    
 public:
+    
+    
     Trie() {
-        children=vector<Trie*>(26,NULL);
         isEnd=false;
+        children= vector<Trie*>(26,NULL);
     }
     
     void insert(string word) {
-        Trie *t=this;
+        Trie *curr= this;
         for(char c:word){
-            if(t->children[c-'a']==NULL)t->children[c-'a']=new Trie();
-            t=t->children[c-'a'];
+            if(curr->children[c-'a']==NULL)curr->children[c-'a']=new Trie();
+            curr= curr->children[c-'a'];
         }
-        t->isEnd=true;
+        curr->isEnd=true;
     }
     
     bool search(string word) {
-        Trie *t=this;
+        Trie*curr=this;
         for(char c:word){
-            if(t->children[c-'a']==NULL)return false;
-            t=t->children[c-'a'];
+            if(curr->children[c-'a']==NULL)return false;
+            curr=curr->children[c-'a'];
         }
-        if(t && t->isEnd)return true;
-        return false;
-        
+        return curr && curr->isEnd;
     }
     
     bool startsWith(string prefix) {
-     
-        Trie*t=this;
+        Trie*curr=this;
         for(char c:prefix){
-            if(t->children[c-'a']==NULL)return false;
-            t=t->children[c-'a'];
+            if(curr->children[c-'a']==NULL)return false;
+            curr=curr->children[c-'a'];
         }
-        
-        return true;
-        
-        
+        return curr;
     }
 };
 
