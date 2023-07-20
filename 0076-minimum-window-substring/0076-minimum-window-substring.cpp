@@ -30,24 +30,23 @@ public:
 //         }
 //         return res;
         
+        
         string ans="";
-        
         unordered_map<char,int>actWin,dupWin;
-        for(char c:t)actWin[c]++;
         
-        int mn=INT_MAX;
-        int letterCnt=0;
-        int slow=0;
+        for(char c:t){
+            actWin[c]++;    
+        }
+        
+        int mn=INT_MAX,len=0,slow=0;
+        
         for(int i=0;i<s.size();i++){
-            char ch=s[i];
-            
-            if(actWin.find(ch)!=actWin.end()){
-                dupWin[ch]++;
-                if(dupWin[ch]<=actWin[ch])letterCnt++;
-                
+            char c=s[i];
+            if(actWin.find(c)!=actWin.end()){
+                dupWin[c]++;
+                if(dupWin[c]<=actWin[c])len++;
             }
-            
-            if(letterCnt>=t.size()){
+            if(len>=t.size()){
                 while(actWin.find(s[slow])==actWin.end() || actWin[s[slow]]<dupWin[s[slow]]){
                     dupWin[s[slow++]]--;
                 }
@@ -56,15 +55,9 @@ public:
                     ans=s.substr(slow,mn);
                 }
             }
-            
         }
         
-        
-        
-        
-        
         return ans;
-        
         
     }
 };
