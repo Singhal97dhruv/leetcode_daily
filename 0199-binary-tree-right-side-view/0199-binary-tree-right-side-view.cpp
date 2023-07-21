@@ -22,14 +22,25 @@ public:
     //     recursion(ptr->left,level+1,v);
     // }
     
+//     vector<int>res;
+//     void recur(TreeNode*t,int lev){
+//         if(!t)return;
+//         if(lev==res.size())res.resize(lev+1);
+//         res[lev]=t->val;
+//         recur(t->left,lev+1);
+//         recur(t->right,lev+1);
+//     }    
+    
     vector<int>res;
+    
     void recur(TreeNode*t,int lev){
         if(!t)return;
         if(lev==res.size())res.resize(lev+1);
         res[lev]=t->val;
         recur(t->left,lev+1);
         recur(t->right,lev+1);
-    }    
+    }
+    
     vector<int> rightSideView(TreeNode* root) {
         // vector<int>v;
         // recursion(root,1,v);
