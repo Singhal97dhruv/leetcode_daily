@@ -1,11 +1,17 @@
 class Solution {
 public:
     
-    string find_palindrome(string s,int i,int j){
-        while(i>=0 && j<s.size() && s[i]==s[j])i--,j++;
+//     string find_palindrome(string s,int i,int j){
+//         while(i>=0 && j<s.size() && s[i]==s[j])i--,j++;
+//         return s.substr(i+1,j-i-1);
+//     }
+    
+    string findPalindromic(string s,int i,int j){
+        while(i>=0 && j<s.size() && s[i]==s[j]){
+            i--,j++;
+        }
         return s.substr(i+1,j-i-1);
     }
-    
     
     string longestPalindrome(string s) {
 //         int len = s.size();
@@ -38,21 +44,30 @@ public:
 //         }
 //     }
 //    return s.substr(start, end);
-        string res="";
-        for(int i=0;i<s.size();i++){
+//         string res="";
+//         for(int i=0;i<s.size();i++){
 
-            string res1=find_palindrome(s,i,i);
+//             string res1=find_palindrome(s,i,i);
             
-            if(res1.size()>res.size())res=res1;
+//             if(res1.size()>res.size())res=res1;
             
-            string res2=find_palindrome(s,i,i+1);
+//             string res2=find_palindrome(s,i,i+1);
      
-            if(res2.size()>res.size())res=res2;
+//             if(res2.size()>res.size())res=res2;
 
+//         }
+//         return res;
+        
+        string res="";
+        
+        for(int i=0;i<s.size();i++){
+            
+            string res1=findPalindromic(s,i,i);
+            if(res1.size()>res.size())res=res1;
+            string res2=findPalindromic(s,i,i+1);
+            if(res2.size()>res.size())res=res2;
         }
         return res;
-        
-        
         
         
     }
