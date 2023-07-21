@@ -37,16 +37,23 @@ public:
         
         int sum=accumulate(nums.begin(),nums.end(),0);
         int target=sum/2;
-        vector<int>dp(target+1,0);
-        dp[0]=1;
+        // vector<int>dp(target+1,0);
+        // dp[0]=1;
         if(sum&1)return false;
+        // for(int i:nums){
+        //     for(int j=target;j>=i;j--){
+        //         if(dp[j-i])
+        //             dp[j]=1;
+        //     }
+        // }
+        // return dp[target];
+        
+        bitset<10001>dp(1);
         for(int i:nums){
-            for(int j=target;j>=i;j--){
-                if(dp[j-i])
-                    dp[j]=1;
-            }
+            dp|= dp<<i;
         }
         return dp[target];
+        
         
     }
 };
