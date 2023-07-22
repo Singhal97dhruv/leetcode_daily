@@ -34,46 +34,36 @@ public:
 //         result+=num*sign; 
 //         return result; 
         
-       
-        long long res=0,num=0;
-        int sign=1;
-        stack<int>cal,opr;
-        
-        for(int i=0;i<s.size();i++){
-            if(s[i]>='0' && s[i]<='9'){
-                num=num*10+(s[i]-'0');
+     long long res=0,num=0,sign=1;
+        stack<long long>oprStk,numStk;
+        for(char c:s){
+            if(c>='0' && c<='9'){
+                num=num*10 + c-'0';
             }
-            else if(s[i]=='+'){
-                res+=sign*num;
-                num=0;
-                sign=1;
-            }
-            else if(s[i]=='-'){
-                res+=sign*num;
-                num=0;
-                sign=-1;
-            }
-            else if(s[i]=='('){
-                cal.push(res);
-                opr.push(sign);
-                res=0;sign=1;
-                
-            }
-            else if(s[i]==')' && opr.size()){
+            else if(c=='+'){
                 res+=num*sign;
-                res=res*opr.top()+cal.top();cal.pop();
-                opr.pop();
+                sign=1;
                 num=0;
             }
-            
-            
+            else if(c=='-'){
+                res+=num*sign;
+                sign=-1;
+                num=0;
+            }
+            else if(c=='('){
+                oprStk.push(sign);
+                numStk.push(res);
+                sign=1;res=0;
+            }
+            else if(c==')'){
+                res+=sign*num;
+                num=0;
+                res= res*oprStk.top()+numStk.top();
+                oprStk.pop();
+                numStk.pop();
+            }
         }
-        
         res+=num*sign;
-        
         return res;
-        
-        
-        
     }
 };
