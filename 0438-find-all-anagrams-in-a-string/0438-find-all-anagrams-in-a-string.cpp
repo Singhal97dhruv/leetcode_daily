@@ -25,22 +25,38 @@ public:
 //         return res;
         
         
-        vector<int>ori(26,0);
-        vector<int>dup(26,0);
-        vector<int>ans;
-        for(char c:p)ori[c-'a']++;
+//         vector<int>ori(26,0);
+//         vector<int>dup(26,0);
+//         vector<int>ans;
+//         for(char c:p)ori[c-'a']++;
         
-        int i=0,j=0;
+//         int i=0,j=0;
         
-        for(;j<p.size();j++)
-            dup[s[j]-'a']++;
-        for(;j<=s.size();j++){
+//         for(;j<p.size();j++)
+//             dup[s[j]-'a']++;
+//         for(;j<=s.size();j++){
 
-            if(ori==dup)ans.push_back(i);
-            dup[s[i]-'a']--;
-            i++;
-            if(j<s.size())
-            dup[s[j]-'a']++;
+//             if(ori==dup)ans.push_back(i);
+//             dup[s[i]-'a']--;
+//             i++;
+//             if(j<s.size())
+//             dup[s[j]-'a']++;
+//         }
+//         return ans;
+        
+        
+        
+        vector<int>actual(26,0),testing(26,0),ans;
+        
+        for(char c:p)actual[c-'a']++;
+        
+        int i;
+            for(int i=0;i<p.size()-1;i++)
+                testing[s[i]-'a']++;
+        for(int j=p.size()-1,i=0;j<s.size();j++){
+            testing[s[j]-'a']++;
+            if(testing==actual)ans.push_back(i);
+            testing[s[i++]-'a']--;
         }
         return ans;
         
