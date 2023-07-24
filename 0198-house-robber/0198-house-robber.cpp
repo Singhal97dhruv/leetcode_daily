@@ -10,16 +10,16 @@ public:
 //         return dp[idx]= max(nums[idx]+recur(nums,idx+2),recur(nums,idx+1));
         
 //     }
-    int dp[101]={[0 ... 100]=-1};
-    int recur(int idx,vector<int>&nums){
-        if(idx>=nums.size())return 0;
-        if(dp[idx]!=-1)return dp[idx];
-        int ans=0;
-        ans=nums[idx]+recur(idx+2,nums);
+    int dp[102]={[0 ... 100]=0};
+//     int recur(int idx,vector<int>&nums){
+//         if(idx>=nums.size())return 0;
+//         if(dp[idx]!=-1)return dp[idx];
+//         int ans=0;
+//         ans=nums[idx]+recur(idx+2,nums);
         
-        ans=max(nums[idx]+recur(idx+2,nums),recur(idx+1,nums));
-        return dp[idx]=ans;
-    }
+//         ans=max(nums[idx]+recur(idx+2,nums),recur(idx+1,nums));
+//         return dp[idx]=ans;
+//     }
     
     
     int rob(vector<int>& nums) {
@@ -41,8 +41,14 @@ public:
 //             dp[i]=max(dp[i+1],nums[i]+dp[i+2]);
 //         }
 //         return dp[0];
-        return recur(0,nums);
+        // return recur(0,nums);
         
-        
+        int n=nums.size();
+        dp[n-1]=nums[n-1];
+        for(int i=n-2;i>=0;i--){
+            dp[i]=max(dp[i+1],nums[i]+dp[i+2]);
+            
+        }
+        return dp[0];
     }
 };
