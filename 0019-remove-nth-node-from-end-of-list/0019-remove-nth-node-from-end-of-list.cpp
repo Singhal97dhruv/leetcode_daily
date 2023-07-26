@@ -25,6 +25,32 @@ public:
 //         return head;
 
         
+//         int cnt=0;
+//         ListNode*ptr=head;
+//         while(ptr){
+//             cnt++;
+//             ptr=ptr->next;
+//         }
+        
+//         int pos=cnt-n;
+//         ListNode*dummy=new ListNode(0);
+//         dummy->next=head;
+//         ptr=dummy;
+//         for(int i=0;i<pos;i++){
+//             ptr=ptr->next;
+//         }
+        
+//         ListNode*nxt=ptr->next;
+//         if(nxt->next){
+//             ptr->next=nxt->next;
+//             nxt=nullptr;
+//         }
+//         else{
+//             ptr->next=nullptr;
+//             nxt=NULL;
+//         }
+//         return dummy->next;
+        
         int cnt=0;
         ListNode*ptr=head;
         while(ptr){
@@ -32,24 +58,18 @@ public:
             ptr=ptr->next;
         }
         
-        int pos=cnt-n;
-        ListNode*dummy=new ListNode(0);
-        dummy->next=head;
-        ptr=dummy;
-        for(int i=0;i<pos;i++){
+        int removeIdx=cnt-n-1;
+        if(removeIdx==-1)return head->next;
+        ptr=head;
+        for(int i=0;i<removeIdx;i++){
             ptr=ptr->next;
         }
+        if(ptr->next){
+            ptr->next=ptr->next->next;
+        }
+        else ptr->next=NULL;
         
-        ListNode*nxt=ptr->next;
-        if(nxt->next){
-            ptr->next=nxt->next;
-            nxt=nullptr;
-        }
-        else{
-            ptr->next=nullptr;
-            nxt=NULL;
-        }
-        return dummy->next;
+        return head;
         
     }    
 };
