@@ -26,10 +26,23 @@ public:
  //            p=p->next;
  //        }
  //        return temp->next;
+    //     if(!head || !head->next)return head;
+    //     ListNode*dummyNode=new ListNode();
+    //     ListNode*ptr=dummyNode;
+    //     ListNode*curr=head;
+    //     while(curr && curr->next){
+    //         ptr->next=curr->next;
+    //         curr->next=ptr->next->next;
+    //         ptr->next->next=curr;
+    //         ptr=curr;
+    //         curr=curr->next;
+    //     }
+    //     return dummyNode->next;
         if(!head || !head->next)return head;
-        ListNode*dummyNode=new ListNode();
-        ListNode*ptr=dummyNode;
-        ListNode*curr=head;
+
+        ListNode*ptr=new ListNode(0);
+        
+        ListNode*curr=head,*start=ptr;
         while(curr && curr->next){
             ptr->next=curr->next;
             curr->next=ptr->next->next;
@@ -37,6 +50,7 @@ public:
             ptr=curr;
             curr=curr->next;
         }
-        return dummyNode->next;
+        return start->next;
+        
     }
 };
