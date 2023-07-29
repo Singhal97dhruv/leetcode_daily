@@ -13,21 +13,39 @@ public:
 //     }
     
     
-    void recur(string s,int n,int m,vector<string>&ans){
+//     void recur(string s,int n,int m,vector<string>&ans){
         
-        if(n==0 && m==0){
-            ans.push_back(s);
-            return;
-        }
+//         if(n==0 && m==0){
+//             ans.push_back(s);
+//             return;
+//         }
         
-        if(n>0){
-            recur(s+"(",n-1,m+1,ans);
+//         if(n>0){
+//             recur(s+"(",n-1,m+1,ans);
             
-        }
-        if(m>0){
-            recur(s+")",n,m-1,ans);
-        }
+//         }
+//         if(m>0){
+//             recur(s+")",n,m-1,ans);
+//         }
     
+//     }
+    
+    vector<string>res;
+    void recur(string curr,int leftPths, int rightPths){
+        
+        if(leftPths==0 && rightPths==0)
+        {
+            res.push_back(curr);
+            return ;
+        }
+            
+        if(leftPths>0){
+            recur(curr+'(',leftPths-1,rightPths+1);
+        }
+        if(rightPths>0){
+            recur(curr+')',leftPths,rightPths-1);
+        }
+        
     }
     
     
@@ -39,8 +57,8 @@ public:
         // return paren;
         
         
-        vector<string>res;
-        recur("",n,0,res);
+        // vector<string>res;
+        recur("",n,0);
         return res;
         
         
