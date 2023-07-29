@@ -28,28 +28,49 @@ public:
 //         return res;
         
         
-        stack<int>stk;
-        for(int i:asteroids){
+//         stack<int>stk;
+//         for(int i:asteroids){
+//             if(i>0)stk.push(i);
+//             else{
+//                 while(!stk.empty() && stk.top()>0 && stk.top()<-i){
+//                     stk.pop();
+//                 }
+//                 if(!stk.empty() && stk.top()>0)
+//                 {
+//                     if(stk.top()==-i)
+//                     stk.pop();
+//                 }
+//                 else stk.push(i);
+//             }
+//         }
+        
+//         vector<int>res(stk.size());
+//         for(int i=stk.size()-1;i>=0;i--){
+//             res[i]=stk.top();stk.pop();
+//         }
+//         return res;
+        
+       stack<int>stk;
+        for(int i: asteroids){
             if(i>0)stk.push(i);
             else{
-                while(!stk.empty() && stk.top()>0 && stk.top()<-i){
+                while(!stk.empty() && stk.top()>0 && stk.top()<abs(i)){
+                    // if(stk.top()==abs(i)){stk.pop();break;}
                     stk.pop();
                 }
                 if(!stk.empty() && stk.top()>0)
                 {
-                    if(stk.top()==-i)
-                    stk.pop();
+                    if(stk.top()==-i)stk.pop();
                 }
                 else stk.push(i);
+                
             }
         }
-        
-        vector<int>res(stk.size());
+        vector<int>ans(stk.size());
         for(int i=stk.size()-1;i>=0;i--){
-            res[i]=stk.top();stk.pop();
+            ans[i]=stk.top();
+            stk.pop();
         }
-        return res;
-        
-        
+        return ans;
     }
 };
