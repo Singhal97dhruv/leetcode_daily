@@ -11,10 +11,17 @@ public:
 //         }
 //         return count;
         
+//         int cnt=0;
+//         while(n){
+//             n=n&(n-1);
+//             cnt++;
+//         }
+//         return cnt;
+        
         int cnt=0;
         while(n){
-            n=n&(n-1);
-            cnt++;
+            cnt+=n&1;
+            n>>=1;
         }
         return cnt;
     }
