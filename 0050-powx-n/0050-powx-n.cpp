@@ -16,16 +16,32 @@ public:
 //         }
 //         return ans;
         
-        if(n<0)x=1/x;
+//         if(n<0)x=1/x;
+//         long times=labs(n);
+//         double ans=1;
+//         while(times){
+//             if(times&1){
+//                 ans*=x;
+//             }
+//             x*=x;
+//             times>>=1;
+//         }
+//         return ans;
+        if (n<0)x=1/x;
         long times=labs(n);
         double ans=1;
         while(times){
+            
             if(times&1){
                 ans*=x;
             }
+            
             x*=x;
+        
             times>>=1;
+        
         }
         return ans;
+        
     }
 };
