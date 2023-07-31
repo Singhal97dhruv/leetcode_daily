@@ -16,18 +16,34 @@ public:
         // }
         // return res*res;
         
-        vector<vector<int>>dp(matrix.size(),vector<int>(matrix[0].size(),0));
-        int sz=0;
+//         vector<vector<int>>dp(matrix.size(),vector<int>(matrix[0].size(),0));
+//         int sz=0;
+//         for(int i=0;i<matrix.size();i++){
+//             for(int j=0;j<matrix[0].size();j++){
+//                 if(!i||!j||matrix[i][j]=='0')dp[i][j]=matrix[i][j]-'0';
+//                 else{
+//                     dp[i][j]=min({dp[i-1][j-1],dp[i][j-1],dp[i-1][j]})+1;
+                    
+//                 }
+//                 sz=max(sz,dp[i][j]);
+//             }
+//         }
+//         return sz*sz;
+        int prev=0,sz=0;
+        vector<int>dp(matrix[0].size());
         for(int i=0;i<matrix.size();i++){
             for(int j=0;j<matrix[0].size();j++){
-                if(!i||!j||matrix[i][j]=='0')dp[i][j]=matrix[i][j]-'0';
-                else{
-                    dp[i][j]=min({dp[i-1][j-1],dp[i][j-1],dp[i-1][j]})+1;
+                int temp=dp[j];
+                if(!i || !j || matrix[i][j]=='0')dp[j]=matrix[i][j]-'0';
+                else
+                    dp[j]=min({dp[j],dp[j-1],prev})+1;
+                
+                prev=temp;
+                sz=max(sz,dp[j]);
+                
                     
-                }
-                sz=max(sz,dp[i][j]);
             }
         }
-        return sz*sz;
+        return sz*sz;   
     }
 };
