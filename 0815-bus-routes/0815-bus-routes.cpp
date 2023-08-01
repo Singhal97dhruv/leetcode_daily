@@ -45,6 +45,7 @@ public:
             for(int i: map[stop]){
                 for(int j: routes[i]){
                     if(seen.find(j)!=seen.end())continue;
+                    seen.insert(j);
                     q.push({j,bus+1});
                 }
                 routes[i].clear();
