@@ -12,12 +12,18 @@
 class Solution {
 public:
     
-    bool recurse(TreeNode*p,TreeNode*q){
-        if(!p && !q)return true;
-        if(!p || !q)return false;
-        if(p->val!=q->val)return false;
-        return recurse(p->left,q->right)&& recurse(p->right,q->left);
+//     bool recurse(TreeNode*p,TreeNode*q){
+//         if(!p && !q)return true;
+//         if(!p || !q)return false;
+//         if(p->val!=q->val)return false;
+//         return recurse(p->left,q->right)&& recurse(p->right,q->left);
         
+//     }
+    
+    bool dfs(TreeNode*p,TreeNode*q){
+        if(!p && !q) return true;
+        if(!p ||!q || p->val!=q->val)return false;
+        return dfs(p->left,q->right)&& dfs(p->right,q->left);
     }
     
     bool isSymmetric(TreeNode* root) {
@@ -38,7 +44,7 @@ public:
         //     q2.push(right->left);
         // }
         // return true;
-        return recurse(root->left,root->right);
-        
+        // return recurse(root->left,root->right);
+        return dfs(root->left,root->right);
     }
 };
