@@ -25,19 +25,31 @@ public:
     
     vector<string>res;
     
-    void backtrack(int idx,string curr,string digits){
+//     void backtrack(int idx,string curr,string digits){
+//         if(idx>=digits.size()){
+//             res.push_back(curr);
+//             return ;
+//         }
+//         int offsetIdx=digits[idx]-'0';
+        
+//         for(int i=0;i<offset[offsetIdx].size();i++){
+//             backtrack(idx+1,curr+offset[offsetIdx][i],digits);
+//         }
+        
+//     }
+    
+    void backtrack(int idx,string digits,string curr){
         if(idx>=digits.size()){
             res.push_back(curr);
-            return ;
+            return;
         }
-        int offsetIdx=digits[idx]-'0';
         
+        int offsetIdx=digits[idx]-'0';
         for(int i=0;i<offset[offsetIdx].size();i++){
-            backtrack(idx+1,curr+offset[offsetIdx][i],digits);
+            backtrack(idx+1,digits,curr+offset[offsetIdx][i]);
         }
         
     }
-    
     
     vector<string> letterCombinations(string digits) {
 //         if(digits.empty())return {};
@@ -56,7 +68,8 @@ public:
         if(digits.size()==0)return {};
         // recur("",0,digits);
         
-        backtrack(0,"",digits);
+        // backtrack(0,"",digits);
+        backtrack(0,digits,"");
         return res;
         
     }
