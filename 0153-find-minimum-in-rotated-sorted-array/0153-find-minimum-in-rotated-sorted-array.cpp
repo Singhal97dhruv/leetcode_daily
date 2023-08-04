@@ -17,15 +17,25 @@ public:
 //         return nums[l];
         
         
-        int left=0,right=nums.size()-1;
+//         int left=0,right=nums.size()-1;
         
-        while(left<right){
-            if(nums[left]<nums[right])return nums[left];
-            int mid=left+(right-left)/2;
+//         while(left<right){
+//             if(nums[left]<nums[right])return nums[left];
+//             int mid=left+(right-left)/2;
             
+//             if(nums[mid]>nums[right])left=mid+1;
+//             else right=mid;
+            
+//         }
+//         return nums[left];
+        
+        
+        int left=0,right=nums.size()-1,mn=INT_MAX;
+        while(left<right){
+           if(nums[left]<nums[right])return nums[left];
+            int mid=left+(right-left)/2;
             if(nums[mid]>nums[right])left=mid+1;
             else right=mid;
-            
         }
         return nums[left];
         
