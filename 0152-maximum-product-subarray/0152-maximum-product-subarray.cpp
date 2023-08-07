@@ -12,13 +12,24 @@ public:
 //         }
 //         return res;
         
+        // int ans=nums[0];
+        // int mx=ans,mn=ans;
+        // for(int i=1;i<nums.size();i++){
+        //     if(nums[i]<0)swap(mx,mn);
+        //     mx=max(nums[i],mx*nums[i]);
+        //     mn=min(nums[i],mn*nums[i]);
+        //     ans=max(ans,mx);
+        // }
+        // return ans;
+        
+        
         int ans=nums[0];
-        int mx=ans,mn=ans;
+        int mn=ans,mx=ans;
         for(int i=1;i<nums.size();i++){
-            if(nums[i]<0)swap(mx,mn);
-            mx=max(nums[i],mx*nums[i]);
-            mn=min(nums[i],mn*nums[i]);
-            ans=max(ans,mx);
+            if(nums[i]<0)swap(mn,mx);
+            mx=max(mx*nums[i],nums[i]);
+            mn=min(mn*nums[i],nums[i]);
+            ans=max(mx,ans);
         }
         return ans;
     }
