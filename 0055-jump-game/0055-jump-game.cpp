@@ -29,6 +29,13 @@ public:
        // return false;
         // return reach(0,nums[0],nums);
        
+        // int mx=0;
+        // for(int i=0;i<=mx;i++){
+        //     mx=max(mx,i+nums[i]);
+        //     if(mx>=nums.size()-1)return true;
+        // }
+        // return false;
+        
         int mx=0;
         for(int i=0;i<=mx;i++){
             mx=max(mx,i+nums[i]);
