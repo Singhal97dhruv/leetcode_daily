@@ -26,11 +26,13 @@ public:
 //         reverse(nums,nums.size()-k,nums.size()-1);
 //         reverse(nums,0,nums.size()-1);
         
-       int n=nums.size();
+      int n=nums.size();
         k=k%n;
         reverse(nums.begin(),nums.end()-k);
         reverse(nums.end()-k,nums.end());
         reverse(nums.begin(),nums.end());
+        
+        
         
         
     }
