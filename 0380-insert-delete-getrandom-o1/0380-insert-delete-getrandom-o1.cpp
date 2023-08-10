@@ -3,35 +3,33 @@ public:
     RandomizedSet() {
         
     }
-    
     unordered_map<int,int>map;
     vector<int>vect;
-    
     bool insert(int val) {
         if(map.find(val)!=map.end())return false;
+        
         vect.push_back(val);
         map[val]=vect.size()-1;
         return true;
-        
     }
     
     bool remove(int val) {
         
         if(map.find(val)==map.end())return false;
-        int lstNum=vect.back();
-        int idxOfDel = map[val];
-
-        vect[idxOfDel]=lstNum;
-        vect.pop_back();
-
-        map[lstNum]=idxOfDel;
-        map.erase(val);
-        return true;
         
+        int Idx=map[val];
+        vect[Idx]=vect[vect.size()-1];
+        map[vect[Idx]]=Idx;
+
+        map.erase(val);
+        vect.pop_back();
+        
+        return true;        
     }
     
     int getRandom() {
-        return vect[rand()%vect.size()];
+        int n=vect.size();
+        return vect[rand()%n];
     }
 };
 
