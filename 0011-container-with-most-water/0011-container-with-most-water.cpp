@@ -40,13 +40,20 @@ public:
 //         }
 //         return res;
         
-        int l=0,r=height.size()-1,res=0;
-        while(l<r){
-            res=max(res,min(height[l],height[r])*(r-l));
-            if(height[l]<height[r])l++;
-            else r--;
-        }
+//         int l=0,r=height.size()-1,res=0;
+//         while(l<r){
+//             res=max(res,min(height[l],height[r])*(r-l));
+//             if(height[l]<height[r])l++;
+//             else r--;
+//         }
         
+//         return res;
+        int left=0,right=height.size()-1,res=-1;
+        while(left<right){
+            res=max(res,min(height[left],height[right])*(right-left));
+            if(height[left]<height[right])left++;
+            else right--;
+        }
         return res;
     }
 };
