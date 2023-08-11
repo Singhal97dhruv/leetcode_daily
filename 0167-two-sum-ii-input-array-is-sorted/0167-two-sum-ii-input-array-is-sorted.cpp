@@ -16,14 +16,23 @@ public:
         // return res;
         
         
-        int left=0,right=numbers.size()-1;
-        while(left<right){
-            if(numbers[left]+numbers[right]>target){
-                right--;
+        // int left=0,right=numbers.size()-1;
+        // while(left<right){
+        //     if(numbers[left]+numbers[right]>target){
+        //         right--;
+        //     }
+        //     else if(numbers[left]+numbers[right]<target)left++;
+        //     else return {left+1,right+1};
+        // }
+        // return{};
+        
+        unordered_map<int,int>map;
+        for(int i=0;i<numbers.size();i++){
+            if(map.find(target-numbers[i])!=map.end()){
+                return {map[target-numbers[i]]+1,i+1};
             }
-            else if(numbers[left]+numbers[right]<target)left++;
-            else return {left+1,right+1};
+            map[numbers[i]]=i;
         }
-        return{};
+        return {};
     }
 };
