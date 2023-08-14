@@ -21,10 +21,13 @@ public:
 //         nth_element(nums.begin(),nums.begin()+k-1,nums.end(),cmp());
 //         return nums[k-1];
         
-        auto cmp=[](int a, int b){return a>b;};
+//         auto cmp=[](int a, int b){return a>b;};
         
-        nth_element(nums.begin(),nums.begin()+k-1,nums.end(),cmp);
+//         nth_element(nums.begin(),nums.begin()+k-1,nums.end(),cmp);
         
+//         return nums[k-1];
+        
+        nth_element(nums.begin(),nums.begin()+k-1,nums.end(),[](int x,int y){return x>y;});
         return nums[k-1];
         
     }
