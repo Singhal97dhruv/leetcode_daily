@@ -1,16 +1,26 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string str) {
-          map<char, int> p2i;
-    map<string, int> w2i;
-    istringstream in(str);
-    int i = 0, n = pattern.size();
-    for (string word; in >> word; ++i) {
-        if (i == n || p2i[pattern[i]] != w2i[word])
-            return false;
-        p2i[pattern[i]] = w2i[word] = i + 1;
-    }
-    return i == n;
-        
+         
+        unordered_map<char,string>map;
+        unordered_set<string>set;
+        stringstream ss(str);
+        vector<string>strs;
+        string temp;
+        while(ss>>temp){
+            strs.push_back(temp);
+        }
+        if(pattern.size()!=strs.size())return false;
+        for(int i=0;i<pattern.size();i++){
+            if(map.find(pattern[i])!=map.end()){
+                if(map[pattern[i]]!=strs[i])return false;
+            }
+            else{
+                if(set.find(strs[i])!=set.end())return false;
+                map[pattern[i]]=strs[i];
+                set.insert(strs[i]);
+            }
+        }
+        return true;
     }
 };
