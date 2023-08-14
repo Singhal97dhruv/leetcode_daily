@@ -51,21 +51,33 @@ public:
         
 //         return true;
         
-        int arr1[9][9]={0},arr2[9][9]={0},arr3[9][9]={0};
+//         int arr1[9][9]={0},arr2[9][9]={0},arr3[9][9]={0};
         
+//         for(int i=0;i<9;i++){
+//             for(int j=0;j<9;j++){
+//                 if(board[i][j]=='.')continue;
+//                 int num=board[i][j]-'0'-1;
+//                 int blockIdx=(i/3)*3 + j/3; 
+//                 if(arr1[i][num] || arr2[j][num] || arr3[blockIdx][num])return false;
+                    
+//                 arr1[i][num]=arr2[j][num]=arr3[blockIdx][num]=1;                
+                
+//             }
+//         }
+        
+//         return true;
+        
+        int arr1[9][9]={0},arr2[9][9]={0},arr3[9][9]={0};
         for(int i=0;i<9;i++){
             for(int j=0;j<9;j++){
-                if(board[i][j]=='.')continue;
+               if(board[i][j]=='.')continue;
                 int num=board[i][j]-'0'-1;
-                int blockIdx=(i/3)*3 + j/3; 
-                if(arr1[i][num] || arr2[j][num] || arr3[blockIdx][num])return false;
-                    
-                arr1[i][num]=arr2[j][num]=arr3[blockIdx][num]=1;                
+                int BlockIdx=(i/3)*3 + j/3;
+                if(arr1[i][num]|| arr2[j][num] || arr3[BlockIdx][num])return false;
                 
+                arr1[i][num]=arr2[j][num]=arr3[BlockIdx][num]=1;
             }
         }
-        
         return true;
-        
     }
 };
