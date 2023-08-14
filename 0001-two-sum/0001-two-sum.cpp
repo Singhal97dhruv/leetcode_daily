@@ -37,16 +37,17 @@ public:
      //        }
      //        map[nums[i]]=i+1;
      //    }
+
         
         unordered_map<int,int>map;
-        for(int i=0;i<nums.size();i++){
-            if(map[target-nums[i]]>0){
-                return {map[target-nums[i]]-1,i};
-            }
-            map[nums[i]]=i+1;
-        }
-        return {};
         
+      for(int i=0;i<nums.size();i++){
+          if(map.find(target-nums[i])!=map.end()){
+              return {map[target-nums[i]],i};
+          }
+          map[nums[i]]=i;
+      }
+        return {};
         
         // return ans;
     }
