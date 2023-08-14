@@ -25,16 +25,13 @@ public:
 //             if(map[c]==0)map.erase(c);
 //         }
 //         return map.size()==0?true:false;
-        if(s.size()!=t.size())return false;
+       if(s.size()!=t.size())return false;
         unordered_map<char,int>map;
-        for(char c:s)map[c]++;
-        for(char c:t){
-            if(map[c]){
-                map[c]--;
-            }
-            else return false;
-            if(map[c]==0)map.erase(c);
+        for(char c: s)map[c]++;
+        for(char c: t){
+            if(map[c]--==0)return false;
         }
-        return map.size()==0;
+        return true;
+        
     }
 };
