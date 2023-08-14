@@ -29,24 +29,43 @@ public:
         //     }
         // }
         
-        int m=board.size(),n=board[0].size();
+//         int m=board.size(),n=board[0].size();
           
+//         for(int i=0;i<m;i++){
+//             for(int j=0;j<n;j++){
+//                 int cnt=0;
+//                 for(int ii=max(0,i-1);ii<min(m,i+2);ii++){
+//                     for(int jj=max(0,j-1);jj<min(n,j+2);jj++){
+//                         cnt+=board[ii][jj]&1;
+//                     }
+//                 }
+//                 if(cnt==3 || cnt-board[i][j]==3)board[i][j]=board[i][j]|2;
+//             }
+//         }
+        
+//         for(int i=0;i<m;i++){
+//             for(int j=0;j<n;j++){
+//                 board[i][j]>>=1;
+//             }
+//         }
+        
+        int m=board.size(),n=board[0].size();
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                int cnt=0;
+                int LiveNeighs=0;
                 for(int ii=max(0,i-1);ii<min(m,i+2);ii++){
                     for(int jj=max(0,j-1);jj<min(n,j+2);jj++){
-                        cnt+=board[ii][jj]&1;
+                        if(board[ii][jj]&1)LiveNeighs++;
                     }
                 }
-                if(cnt==3 || cnt-board[i][j]==3)board[i][j]=board[i][j]|2;
+                if(LiveNeighs==3 || LiveNeighs-board[i][j]==3)board[i][j]|=2;
             }
         }
-        
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 board[i][j]>>=1;
             }
         }
+        
     }
 };
