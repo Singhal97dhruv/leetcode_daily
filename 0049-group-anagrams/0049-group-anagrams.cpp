@@ -2,15 +2,15 @@ class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         
-      unordered_map<string,vector<string>>map;
-        for(string s:strs){
+       unordered_map<string,vector<string>>map;
+        for(string s: strs){
             string temp=s;
-            sort(s.begin(),s.end());
-                map[s].push_back(temp);
+            sort(temp.begin(),temp.end());
+            map[temp].push_back(s);
         }
         vector<vector<string>>res;
-        for(auto mp:map){
-            res.push_back(mp.second);
+        for(auto i:map){
+            res.push_back(i.second);
         }
         return res;
         
