@@ -18,21 +18,22 @@ public:
         //     }
         // }
         // return occ;
+        
         if(nums.size()==0)return 0;
         unordered_set<int>set(nums.begin(),nums.end());
-        int mx=1;
+        int ans=0;
         for(int i=0;i<nums.size();i++){
             if(set.find(nums[i]-1)!=set.end())continue;
             else{
                 int cnt=0;
-                int curr_element=nums[i];
-                while(set.find(curr_element)!=set.end()){
+                int num=nums[i];
+                while(set.find(num)!=set.end()){
                     cnt++;
-                    curr_element++;
+                    num++;
                 }
-                mx=max(mx,cnt);
+                ans=max(cnt,ans);
             }
         }
-        return mx;
+        return ans;
     }
 };
