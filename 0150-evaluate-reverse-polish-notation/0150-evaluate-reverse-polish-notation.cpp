@@ -32,24 +32,50 @@ public:
 
         // };
         
-      stack<int>stk;
+//       stack<int>stk;
+//         for(int i=0;i<tokens.size();i++){
+//             if(tokens[i]!="+" && tokens[i]!="*" && tokens[i]!="/" && tokens[i]!="-"){
+//                 stk.push(stoi(tokens[i]));
+//             }
+//             else{
+//                 int x=stk.top();stk.pop();
+//                 int y=stk.top();stk.pop();
+//                 if(tokens[i]=="+")stk.push(x+y);
+//                 else if(tokens[i]=="/")stk.push(y/x);
+//                 else if(tokens[i]=="*")stk.push(x*y);
+//                 else if(tokens[i]=="-")stk.push(y-x);
+
+//             }
+//         }
+//         return stk.top();
+        
+        
+        stack<int>stk;
         for(int i=0;i<tokens.size();i++){
-            if(tokens[i]!="+" && tokens[i]!="*" && tokens[i]!="/" && tokens[i]!="-"){
+            
+            if(tokens[i]!="+" && tokens[i]!="-" && tokens[i]!="*" && tokens[i]!="/")
+            {
                 stk.push(stoi(tokens[i]));
             }
+            
             else{
-                int x=stk.top();stk.pop();
-                int y=stk.top();stk.pop();
-                if(tokens[i]=="+")stk.push(x+y);
-                else if(tokens[i]=="/")stk.push(y/x);
-                else if(tokens[i]=="*")stk.push(x*y);
-                else if(tokens[i]=="-")stk.push(y-x);
-
+                int n1=stk.top();stk.pop();
+                int n2=stk.top();stk.pop();
+                
+                if(tokens[i]=="+"){
+                    stk.push(n1+n2);
+                }
+                else if(tokens[i]=="-")
+                    stk.push(n2-n1);
+                else if(tokens[i]=="*")
+                    stk.push(n1*n2);
+                else
+                    stk.push(n2/n1);
+                
             }
+            
         }
         return stk.top();
-        
-        
         
     }
 };
