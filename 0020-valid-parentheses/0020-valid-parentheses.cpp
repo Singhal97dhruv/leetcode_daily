@@ -42,24 +42,15 @@ public:
 //         return true;
         
         
-        stack<char>stk;
+      stack<char>stk;
         for(char c:s){
-            if(c==']' || c=='}' || c==')'){
-                if(stk.empty())return false;
-                if(stk.top()==c)stk.pop();
-                else return false;
-            }
-            
-            else{
-                if(c=='{')stk.push('}');
-                else if(c=='[')stk.push(']');
-                else if(c=='(')stk.push(')');
-
-            }
-            
+            if(c=='(')stk.push(')');
+            else if(c=='{')stk.push('}');
+            else if(c=='[')stk.push(']');
+            else if(stk.empty() || stk.top()!=c)return false;
+            else stk.pop();
         }
         return stk.empty();
-        
         
         
     }
