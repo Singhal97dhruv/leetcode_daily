@@ -24,20 +24,19 @@ public:
         
         vector<vector<int>>res;
         for(int i=0;i<intervals.size();i++){
-            if(newInterval[0]>intervals[i][1]){
+            if(intervals[i][1]<newInterval[0]){
                 res.push_back(intervals[i]);
             }
-            else if(newInterval[1]<intervals[i][0]){
+            else if(intervals[i][0]>newInterval[1]){
                 res.push_back(newInterval);
                 newInterval=intervals[i];
             }
             else{
-                newInterval[0]=min(intervals[i][0],newInterval[0]);
-                newInterval[1]=max(intervals[i][1],newInterval[1]);
+                newInterval[0]=min(newInterval[0],intervals[i][0]);
+                newInterval[1]=max(newInterval[1],intervals[i][1]);
             }
         }
         res.push_back(newInterval);
         return res;
-        
     }
 };
