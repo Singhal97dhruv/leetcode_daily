@@ -2,19 +2,35 @@ class Solution {
 public:
     string simplifyPath(string path) {
         
-        vector<string>vect;
-        string word,res;
-        stringstream ss(path);
-        while(getline(ss,word,'/')){
-            if(word==""||word==".")continue;
-            if(word==".."&&!vect.empty())vect.pop_back();
-            else if(word!="..")vect.push_back(word);
+        stack<string>stk;
+        string s;
+       
+        for(int i=0;i<path.size();i++){
+            if(path[i]=='/')continue;
+            
+            string temp="";
+            
+            while(i<path.size() && path[i]!='/'){
+                temp+=path[i++];
+                
+            }
+            
+            if(temp==".")continue;
+            else if(temp==".."){
+                if(!stk.empty())
+                stk.pop();
+            }
+            else{
+                stk.push(temp);
+            }
+            
         }
-        for(auto temp:vect){
-            res+="/"+temp;
+        while(!stk.empty()){
+            s="/"+stk.top()+s;
+            stk.pop();
         }
-        if(!res.empty())return res;
-        else return "/";
+        if(s=="")return "/";
+        return s;
         
     }
 };
