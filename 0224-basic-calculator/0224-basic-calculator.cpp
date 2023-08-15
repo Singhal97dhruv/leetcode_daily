@@ -34,33 +34,36 @@ public:
 //         result+=num*sign; 
 //         return result; 
         
-     long long res=0,num=0,sign=1;
-        stack<long long>oprStk,numStk;
-        for(char c:s){
+    long long res=0;
+        stack<int>nums,opr;
+        long long num=0,sign=1;
+        for(int i=0;i<s.size();i++){
+            char c=s[i];
             if(c>='0' && c<='9'){
-                num=num*10 + c-'0';
+                num=num*10+(c-'0');
             }
             else if(c=='+'){
-                res+=num*sign;
+                res+=(num*sign);
                 sign=1;
                 num=0;
             }
             else if(c=='-'){
-                res+=num*sign;
+                res+=(num*sign);
                 sign=-1;
                 num=0;
             }
             else if(c=='('){
-                oprStk.push(sign);
-                numStk.push(res);
-                sign=1;res=0;
+                opr.push(sign);
+                nums.push(res);
+                res=0;
+                sign=1;
             }
-            else if(c==')'){
-                res+=sign*num;
+            else if(c==')' && opr.size()){
+                res+=num*sign;
+                res=res*opr.top() + nums.top();
+                sign=1;
+                opr.pop();nums.pop();
                 num=0;
-                res= res*oprStk.top()+numStk.top();
-                oprStk.pop();
-                numStk.pop();
             }
         }
         res+=num*sign;
