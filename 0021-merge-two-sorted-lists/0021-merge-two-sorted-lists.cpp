@@ -80,36 +80,49 @@ public:
 //         list2->next=mergeTwoLists(list1,list2->next);
 //         return list2;
         
-        if(list1==NULL)return list2;
-        if(list2==NULL)return list1;
+//         if(list1==NULL)return list2;
+//         if(list2==NULL)return list1;
         
-        ListNode*res=new ListNode(0);
-        ListNode*ans=res;
-        while(list1 && list2){
-            if(list1->val<list2->val){
-                res->next=list1;
-                list1=list1->next;
-            }
-            else{
-                res->next=list2;
-                list2=list2->next;
-            }
-            res=res->next;
+//         ListNode*res=new ListNode(0);
+//         ListNode*ans=res;
+//         while(list1 && list2){
+//             if(list1->val<list2->val){
+//                 res->next=list1;
+//                 list1=list1->next;
+//             }
+//             else{
+//                 res->next=list2;
+//                 list2=list2->next;
+//             }
+//             res=res->next;
+//         }
+        
+//         while(list1){
+//             res->next=list1;
+//             list1=list1->next;
+//             res=res->next;
+//         }
+        
+//         while(list2){
+//             res->next=list2;
+//             list2=list2->next;
+//             res=res->next;
+//         }
+        
+        // return ans->next;
+
+        if(!list1 && !list2)return NULL;
+        if(!list1)return list2;
+        if(!list2)return list1;
+        
+        if(list1->val<list2->val){
+            list1->next=mergeTwoLists(list1->next,list2);
+            return list1;
         }
+    
+         list2->next=mergeTwoLists(list1,list2->next);
         
-        while(list1){
-            res->next=list1;
-            list1=list1->next;
-            res=res->next;
-        }
-        
-        while(list2){
-            res->next=list2;
-            list2=list2->next;
-            res=res->next;
-        }
-        
-        return ans->next;
+        return list2;
         
     }
 };
