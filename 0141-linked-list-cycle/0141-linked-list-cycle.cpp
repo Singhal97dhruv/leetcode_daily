@@ -18,10 +18,11 @@ public:
         // }
         // return false;
         
-      ListNode*fast=head,*slow=head;
+    ListNode*slow=head,*fast=head;
         while(fast && fast->next){
-            fast=fast->next->next;
+            
             slow=slow->next;
+            fast=fast->next->next;
             if(fast==slow)return true;
         }
         return false;
