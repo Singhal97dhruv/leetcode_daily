@@ -86,33 +86,47 @@ public:
         // return new_head->next;
         
         
-        ListNode*f=l1,*s=l2;
-        ListNode*third=new ListNode(0);
-        ListNode*res=third;
-        int carry=0;
-        while(f && s){
-            int val= f->val+s->val+carry;
-            f=f->next;s=s->next;
-            carry=val>9?1:0;
-            third->next=new ListNode(val%10);
-            third=third->next;
+//         ListNode*f=l1,*s=l2;
+//         ListNode*third=new ListNode(0);
+//         ListNode*res=third;
+//         int carry=0;
+//         while(f && s){
+//             int val= f->val+s->val+carry;
+//             f=f->next;s=s->next;
+//             carry=val>9?1:0;
+//             third->next=new ListNode(val%10);
+//             third=third->next;
+//         }
+//         while(f){
+//             int val=f->val+carry;
+//             f=f->next;
+//             carry=val>9?1:0;
+//             third->next=new ListNode(val%10);
+//             third=third->next;
+//         }
+//         while(s){
+//             int val=s->val+carry;
+//             s=s->next;
+//             carry=val>9?1:0;
+//              third->next=new ListNode(val%10);
+//             third=third->next;
+//         }
+//         if(carry)third->next=new ListNode(1);
+//         return res->next;
+        
+        
+     if(!l1 && !l2)return NULL;
+        if(!l1)return l2;
+        if(!l2)return l1;
+        
+        int sum=l1->val+l2->val;
+        ListNode*p=new ListNode(sum%10);
+        int carry=sum/10;
+        p->next=addTwoNumbers(l1->next,l2->next);
+        if(carry){
+            p->next=addTwoNumbers(p->next,new ListNode(carry));
         }
-        while(f){
-            int val=f->val+carry;
-            f=f->next;
-            carry=val>9?1:0;
-            third->next=new ListNode(val%10);
-            third=third->next;
-        }
-        while(s){
-            int val=s->val+carry;
-            s=s->next;
-            carry=val>9?1:0;
-             third->next=new ListNode(val%10);
-            third=third->next;
-        }
-        if(carry)third->next=new ListNode(1);
-        return res->next;
+        return p;
         
     }
 };
