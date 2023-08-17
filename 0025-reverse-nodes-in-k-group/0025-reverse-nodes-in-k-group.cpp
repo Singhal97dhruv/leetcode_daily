@@ -22,17 +22,30 @@ public:
     //     return back;
     // }
     
-    ListNode*reverse(ListNode*st,ListNode*end){
-        ListNode*forw=st,*curr=st,*prev=NULL;
-            while(forw!=end){
-                forw=forw->next;
-                curr->next=prev;
-                prev=curr;
-                curr=forw;
+//     ListNode*reverse(ListNode*st,ListNode*end){
+//         ListNode*forw=st,*curr=st,*prev=NULL;
+//             while(forw!=end){
+//                 forw=forw->next;
+//                 curr->next=prev;
+//                 prev=curr;
+//                 curr=forw;
                 
-            }
-            // curr->next=prev;
-            return prev;
+//             }
+//             // curr->next=prev;
+//             return prev;
+//     }
+    
+    ListNode*reverse(ListNode*h,ListNode*t){
+        ListNode*forw=h,*curr=h,*prev=NULL;
+        while(forw!=t){
+            curr=forw;
+            forw=forw->next;
+            curr->next=prev;
+            prev=curr;
+        }
+        // curr->next=prev;
+        return curr;
+        
     }
     
     
@@ -48,17 +61,30 @@ public:
         // head->next=reverseKGroup(temp,k);
         // return Nnode;
         
-        ListNode*list=head;
+//         ListNode*list=head;
        
-        for(int i=0;i<k;i++){
-            if(list)
-                list=list->next;
-            else
-                return head;
-        }
-        ListNode*nNode= reverse(head,list);
-        head->next=reverseKGroup(list,k);
-        return nNode;        
+//         for(int i=0;i<k;i++){
+//             if(list)
+//                 list=list->next;
+//             else
+//                 return head;
+//         }
+//         ListNode*nNode= reverse(head,list);
+//         head->next=reverseKGroup(list,k);
+//         return nNode;        
+        
+       ListNode*h=head;
+       for(int i=0;i<k;i++){
+           if(h)
+               h=h->next;
+           else{
+               return head;
+           }
+       }
+        ListNode*ptr=reverse(head,h);
+        head->next=reverseKGroup(h,k);
+        return ptr;
+        
         
     }
 };
