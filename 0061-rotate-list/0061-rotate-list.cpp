@@ -36,29 +36,50 @@ public:
 //         p->next=head;
 //         return tmp;
         
+//         if(!head || !head->next)return head;
+        
+//         int nodes=0;
+//         ListNode*ptr=head;
+//         while(ptr){
+//             ptr=ptr->next;
+//             nodes++;
+//         }
+//         k=k%nodes;
+//         if(k==0)return head;
+//         ptr=head;
+//         for(int i=0;i<nodes-k-1;i++){
+//             ptr=ptr->next;
+//         }
+//         ListNode*newHead=ptr->next;
+//         ptr->next=NULL;
+//         ptr=newHead;
+//         while(ptr->next){
+//             ptr=ptr->next;
+//         }
+//         ptr->next=head;
+//         return newHead;
+        
         if(!head || !head->next)return head;
-        
-        int nodes=0;
-        ListNode*ptr=head;
-        while(ptr){
-            ptr=ptr->next;
-            nodes++;
+        int n=0;
+        ListNode*h=head;
+        while(h){
+            n++;
+            h=h->next;
         }
-        k=k%nodes;
+        
+        k=k%n;
         if(k==0)return head;
-        ptr=head;
-        for(int i=0;i<nodes-k-1;i++){
-            ptr=ptr->next;
+        h=head;
+        for(int i=0;i<n-k-1;i++){
+            h=h->next;
         }
-        ListNode*newHead=ptr->next;
-        ptr->next=NULL;
-        ptr=newHead;
-        while(ptr->next){
-            ptr=ptr->next;
+        ListNode*ans=h->next;
+        h->next=NULL;
+        h=ans;
+        while(h->next){
+            h=h->next;
         }
-        ptr->next=head;
-        return newHead;
-        
-        
+        h->next=head;
+        return ans;
     }
 };
