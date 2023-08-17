@@ -12,13 +12,9 @@
 class Solution {
 public:
     
-    int lev=1;
-
-    void depth(TreeNode*t,int d){
-        if(!t)return ;
-        lev=max(lev,d);
-        depth(t->left,d+1);
-        depth(t->right,d+1);
+    int depth(TreeNode*t){
+        if(!t)return 0;
+        return 1+max(depth(t->left),depth(t->right));
     }
     
     int maxDepth(TreeNode* root) {
@@ -67,8 +63,7 @@ public:
 //         }
 //         return cnt;
         if(!root)return 0;
-        depth(root,1);
-        return lev;
+        return depth(root);
         
     }
 };
