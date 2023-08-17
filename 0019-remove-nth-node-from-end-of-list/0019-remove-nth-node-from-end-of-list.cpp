@@ -51,25 +51,40 @@ public:
 //         }
 //         return dummy->next;
         
+//         int cnt=0;
+//         ListNode*ptr=head;
+//         while(ptr){
+//             cnt++;
+//             ptr=ptr->next;
+//         }
+        
+//         int removeIdx=cnt-n-1;
+//         if(removeIdx==-1)return head->next;
+//         ptr=head;
+//         for(int i=0;i<removeIdx;i++){
+//             ptr=ptr->next;
+//         }
+//         if(ptr->next){
+//             ptr->next=ptr->next->next;
+//         }
+//         else ptr->next=NULL;
+        
+//         return head;
+        
         int cnt=0;
         ListNode*ptr=head;
-        while(ptr){
-            cnt++;
-            ptr=ptr->next;
-        }
+        while(ptr){cnt++;ptr=ptr->next;}
         
-        int removeIdx=cnt-n-1;
-        if(removeIdx==-1)return head->next;
-        ptr=head;
-        for(int i=0;i<removeIdx;i++){
-            ptr=ptr->next;
-        }
-        if(ptr->next){
-            ptr->next=ptr->next->next;
-        }
-        else ptr->next=NULL;
+        int tar=cnt-n;
+        ListNode*dummy=new ListNode(0);
+        ListNode*p=dummy;
+        p->next=head;
+        for(int i=0;i<tar;i++)
+            p=p->next;
         
-        return head;
+        p->next=p->next->next;
+        return dummy->next;
+        
         
     }    
 };
