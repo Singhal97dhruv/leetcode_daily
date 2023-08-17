@@ -11,6 +11,15 @@
  */
 class Solution {
 public:
+    
+    TreeNode*reverse(TreeNode*t){
+        if(!t)return NULL;
+        TreeNode*ptr=t->left;
+        t->left=reverse(t->right);
+        t->right=reverse(ptr);
+        return t;
+    }
+    
     TreeNode* invertTree(TreeNode* root) {
         // if(root==NULL)return NULL;
         // TreeNode*temp=root->right;
@@ -33,17 +42,17 @@ public:
 //         return root;
         
         
-        stack<TreeNode*>stk;
-        stk.push(root);
-        while(!stk.empty()){
-            TreeNode*f=stk.top();stk.pop();
-            if(f){
-                stk.push(f->left);
-                stk.push(f->right);
-                swap(f->left,f->right);
-            }
-        }
+        // stack<TreeNode*>stk;
+        // stk.push(root);
+        // while(!stk.empty()){
+        //     TreeNode*f=stk.top();stk.pop();
+        //     if(f){
+        //         stk.push(f->left);
+        //         stk.push(f->right);
+        //         swap(f->left,f->right);
+        //     }
+        // }
         
-        return root;
+        return reverse(root);
     }
 };
