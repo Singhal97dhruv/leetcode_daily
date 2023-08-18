@@ -11,19 +11,28 @@
  */
 class Solution {
 public:
-    TreeNode* inpo(vector<int>&in,int x,int y,vector<int>&po,int a,int b){
-        if(x>y||a>b)return NULL;
-        TreeNode*t=new TreeNode(po[b]);
-        int p=x;
-        while(t->val!=in[p])p++;
-        t->left=inpo(in,x,p-1,po,a,a+p-x-1);
-        t->right=inpo(in,p+1,y,po,a+p-x,b-1);
+    unordered_map<int,int>map;
+    TreeNode*build(int left,int right,vector<int>&ino,vector<int>& post,int&k){
+        
+        //Base condition
+        if(left>right)return NULL;
+        
+        TreeNode*t= new TreeNode(post[k]);
+        
+        int Idx=map[post[k--]];
+        t->right=build(Idx+1,right,ino,post,k);
+        t->left=build(left,Idx-1,ino,post,k);
         return t;
-
         
     }
     
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        return inpo(inorder,0,inorder.size()-1,postorder,0,postorder.size()-1);
+     
+        for(int i=inorder.size()-1;i>=0;i--){
+            map[inorder[i]]=i;
+        }
+        int k=postorder.size()-1;
+        return build(0,postorder.size()-1,inorder,postorder,k);
+        
     }
 };
