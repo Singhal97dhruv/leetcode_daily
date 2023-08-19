@@ -27,6 +27,21 @@ public:
         
 //     }
     
+//     int ans=INT_MIN;
+//     int dfs(TreeNode*t){
+//         if(!t)return 0;
+        
+//         int left=dfs(t->left);
+//         int right=dfs(t->right);
+        
+//         int tempMx=
+//         ans=max({ans,max(left,right)+t->val,t->val,t->val+left+right});
+        
+//         return max({t->val+max(left,right),t->val});
+        
+//     }
+    
+    
     int ans=INT_MIN;
     int dfs(TreeNode*t){
         if(!t)return 0;
@@ -34,12 +49,16 @@ public:
         int left=dfs(t->left);
         int right=dfs(t->right);
         
-        int tempMx=
+        int BranchMax=max(t->val+max(left,right),t->val);
+        
         ans=max({ans,max(left,right)+t->val,t->val,t->val+left+right});
         
-        return max({t->val+max(left,right),t->val});
+        return BranchMax;
+        
+        
         
     }
+    
     
     
     int maxPathSum(TreeNode* root) {
