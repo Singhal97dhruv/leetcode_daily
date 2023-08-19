@@ -31,15 +31,37 @@ public:
 //         recur(t->right,lev+1);
 //     }    
     
-    vector<int>res;
+    vector<int>ans;
+    void dfs(TreeNode*t,int level){
+        if(!t)return ;
+        
+        if(level==ans.size())
+            ans.resize(level+1);
+            
+            ans[level]=t->val;
     
-    void recur(TreeNode*t,int lev){
-        if(!t)return;
-        if(lev==res.size())res.resize(lev+1);
-        res[lev]=t->val;
-        recur(t->left,lev+1);
-        recur(t->right,lev+1);
+        dfs(t->left,level+1);
+        dfs(t->right,level+1);
+        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//     vector<int>res;
+    
+//     void recur(TreeNode*t,int lev){
+//         if(!t)return;
+//         if(lev==res.size())res.resize(lev+1);
+//         res[lev]=t->val;
+//         recur(t->left,lev+1);
+//         recur(t->right,lev+1);
+//     }
     
     vector<int> rightSideView(TreeNode* root) {
         // vector<int>v;
@@ -64,8 +86,8 @@ public:
         
         // REcursive way 
         if(!root)return {};
-        recur(root,0);
-        return res;
+        dfs(root,0);
+        return ans;
         
     }
 };
