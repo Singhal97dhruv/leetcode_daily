@@ -10,12 +10,18 @@ public:
         
 //     }
     
-    void dfs(int i,int j,vector<vector<char>>&grid){
-        if(i<0 || j<0 || i>=grid.size() || j>=grid[0].size() || grid[i][j]=='0')return;
+    bool isValid(int i,int j,int m,int n){
+        if(i<0 || j<0 || i>=m || j>=n)return false;
+        return true;
+    }
+    
+    void dfs(vector<vector<char>>&grid,int i,int j){
+        if(!isValid(i,j,grid.size(),grid[0].size()) || grid[i][j]=='0')return;
+        
         grid[i][j]='0';
-
+        
         for(int k=0;k<4;k++){
-            dfs(i+offset[k],j+offset[k+1],grid);
+            dfs(grid,i+offset[k],j+offset[k+1]);
         }
     }
     
@@ -62,18 +68,29 @@ public:
         
 //       return cnt;  
         
-        int cnt=0;
-        for(int i=0;i<grid.size();i++)
-        {
+//         int cnt=0;
+//         for(int i=0;i<grid.size();i++)
+//         {
+//             for(int j=0;j<grid[0].size();j++){
+//                 if(grid[i][j]=='1'){
+//                     cnt++;
+//                     dfs(i,j,grid);
+//                 }
+//             }
+//         }
+        
+        
+//         return cnt;
+        
+        int ans=0;
+        for(int i=0;i<grid.size();i++){
             for(int j=0;j<grid[0].size();j++){
                 if(grid[i][j]=='1'){
-                    cnt++;
-                    dfs(i,j,grid);
+                    ans++;
+                    dfs(grid,i,j);
                 }
             }
         }
-        
-        
-        return cnt;
+        return ans;
     }
 };
