@@ -28,18 +28,40 @@ public:
         
 //     }
     
-    bool isValid(TreeNode*t, TreeNode*mn , TreeNode*mx){
-        if(!t)return true;
+//     bool isValid(TreeNode*t, TreeNode*mn , TreeNode*mx){
+//         if(!t)return true;
         
-        if(mn && t->val<=mn->val || mx && t->val>=mx->val )return false;
+//         if(mn && t->val<=mn->val || mx && t->val>=mx->val )return false;
         
-        return isValid(t->left,mn,t) && isValid(t->right,t,mx);
+//         return isValid(t->left,mn,t) && isValid(t->right,t,mx);
+        
+//     }
+    
+    bool ans=true;
+    void inorderTraversal(TreeNode*t,TreeNode* &prev){
+        
+        if(!t || !ans)return;
+        
+        inorderTraversal(t->left,prev);
+        
+        if(prev){
+            if(t->val<=prev->val){ans=false;
+            return;}
+        }
+        
+        prev=t;
+        inorderTraversal(t->right,prev);
+        
         
     }
     
     
     
+    
     bool isValidBST(TreeNode* root) {
-        return isValid(root,NULL,NULL);   
+        // return isValid(root,NULL,NULL);   
+        TreeNode*m=NULL;
+        inorderTraversal(root,m);
+        return ans;
     }
 };
