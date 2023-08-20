@@ -20,7 +20,7 @@ public:
     //    traverse(tree->right,i+1);  
     //  }
     
-    vector<vector<int>>res;
+    // vector<vector<int>>res;
     
 //     void traverse(TreeNode*root,int lev){
 //         if(!root)return ;
@@ -30,13 +30,29 @@ public:
 //         traverse(root->right,lev+1);
         
 //     }
-    void dfs(TreeNode*t,int k){
-        if(t==NULL)return;
-        if(k==res.size())res.resize(k+1);
-        res[k].push_back(t->val);
-        dfs(t->left,k+1);
-        dfs(t->right,k+1);
+    // void dfs(TreeNode*t,int k){
+    //     if(t==NULL)return;
+    //     if(k==res.size())res.resize(k+1);
+    //     res[k].push_back(t->val);
+    //     dfs(t->left,k+1);
+    //     dfs(t->right,k+1);
+    // }
+    
+    vector<vector<int>>ans;
+    
+    void dfs(TreeNode*t,int level){
+        if(!t)return ;
+        
+        if(level==ans.size())
+            ans.resize(level+1);
+        
+        ans[level].push_back(t->val);
+        
+        dfs(t->left,level+1);
+        dfs(t->right,level+1);
+        
     }
+    
     
     
     
@@ -65,7 +81,7 @@ public:
 //         return res;
         if(!root)return {};
         dfs (root,0);
-        return res;
+        return ans;
         
         
         // if(!root)return {};
