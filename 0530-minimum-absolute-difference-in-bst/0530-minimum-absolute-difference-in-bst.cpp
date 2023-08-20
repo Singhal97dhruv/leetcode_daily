@@ -12,16 +12,32 @@
 class Solution {
 public:
     int mn=INT_MAX;
-    void dfs(TreeNode*t,int &pre){
-        if(!t)return;
-        dfs(t->left,pre);
-        if(pre!=-1)mn=min(mn,t->val-pre);
-        pre=t->val;
-        dfs(t->right,pre);
+    int tempMn=-1;
+    // void dfs(TreeNode*t,int &pre){
+    //     if(!t)return;
+    //     dfs(t->left,pre);
+    //     if(pre!=-1)mn=min(mn,t->val-pre);
+    //     pre=t->val;
+    //     dfs(t->right,pre);
+    // }
+    
+    void inorderTraversal(TreeNode*t){
+        if(!t)return ;
+        inorderTraversal(t->left);
+        
+        if(tempMn!=-1){
+            mn=min(mn,t->val-tempMn);
+            
+        }
+        tempMn=max(t->val,tempMn);
+        inorderTraversal (t->right);
+
+        
     }
+    
+    
     int getMinimumDifference(TreeNode* root) {
-        int pre=-1;
-        dfs(root,pre);
+        inorderTraversal(root);
         return mn;
     }
 };
