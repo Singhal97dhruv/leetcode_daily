@@ -100,20 +100,40 @@ public:
 //         return true;
         
         
+        // vector<int>adj[numCourses];
+        // vector<int>deg(numCourses,0);
+        // queue<int>q;
+        // for(int i=0;i<prerequisites.size();i++){
+        //     adj[prerequisites[i][1]].push_back(prerequisites[i][0]);
+        //     deg[prerequisites[i][0]]++;
+        // }
+        // for(int i=0;i<numCourses;i++){
+        //     if(deg[i]==0)q.push(i);
+        // }
+        // while(!q.empty()){
+        //     int u=q.front();q.pop();
+        //     for(auto &v: adj[u]){
+        //         if(--deg[v]==0)q.push(v);
+        //     }
+        //     numCourses--;
+        // }
+        // return numCourses==0?true:false;
+        
         vector<int>adj[numCourses];
-        vector<int>deg(numCourses,0);
-        queue<int>q;
+        vector<int>indegrees(numCourses);
         for(int i=0;i<prerequisites.size();i++){
             adj[prerequisites[i][1]].push_back(prerequisites[i][0]);
-            deg[prerequisites[i][0]]++;
+            indegrees[prerequisites[i][0]]++;
         }
-        for(int i=0;i<numCourses;i++){
-            if(deg[i]==0)q.push(i);
-        }
+        queue<int>q;
+       for(int i=0;i<indegrees.size();i++){
+           if(indegrees[i]==0)q.push(i);
+       }
+            
         while(!q.empty()){
-            int u=q.front();q.pop();
-            for(auto &v: adj[u]){
-                if(--deg[v]==0)q.push(v);
+            int top=q.front();q.pop();
+            for(auto v: adj[top]){
+                if(--indegrees[v]==0)q.push(v);
             }
             numCourses--;
         }
