@@ -63,18 +63,38 @@ if(!node){
         
 //         return dup;
         
-        Node*t=new Node(node->val);
+//         Node*t=new Node(node->val);
         
+//         copies[node]=t;
+//         queue<Node*>q;
+//         q.push(node);
+//         while(!q.empty()){
+//             Node*temp=q.front();q.pop();
+//             for(Node*v:temp->neighbors){
+//                 if(copies.find(v)==copies.end()){
+//                     copies[v]=new Node(v->val);
+//                     q.push(v);
+//                 }
+//                 copies[temp]->neighbors.push_back(copies[v]);
+//             }
+//         }
+//         return t;
+    
+        Node*t=new Node(node->val);
         copies[node]=t;
         queue<Node*>q;
         q.push(node);
         while(!q.empty()){
             Node*temp=q.front();q.pop();
             for(Node*v:temp->neighbors){
+
                 if(copies.find(v)==copies.end()){
+                    
                     copies[v]=new Node(v->val);
                     q.push(v);
+                    
                 }
+                
                 copies[temp]->neighbors.push_back(copies[v]);
             }
         }
