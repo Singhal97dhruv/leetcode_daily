@@ -29,18 +29,28 @@ public:
         
 //         return root;
         
-        if(num.size()==0)return NULL;
-        if(num.size()==1)return new TreeNode(num[0]);
+//         if(num.size()==0)return NULL;
+//         if(num.size()==1)return new TreeNode(num[0]);
         
+//         int mid=num.size()/2;
+//         TreeNode*t=new TreeNode(num[mid]);
+//         vector<int>leftSub(num.begin(),num.begin()+mid);
+//         vector<int>rightSub(num.begin()+mid+1,num.end());
+        
+//         t->left=sortedArrayToBST(leftSub);
+//         t->right=sortedArrayToBST(rightSub);
+        
+//         return t;
+        
+        if(num.size()==0)return NULL;
         int mid=num.size()/2;
         TreeNode*t=new TreeNode(num[mid]);
-        vector<int>leftSub(num.begin(),num.begin()+mid);
-        vector<int>rightSub(num.begin()+mid+1,num.end());
-        
-        t->left=sortedArrayToBST(leftSub);
-        t->right=sortedArrayToBST(rightSub);
-        
+        vector<int>leftVect(num.begin(),num.begin()+mid);
+        vector<int>rightVect(num.begin()+mid+1,num.end());
+        t->left=sortedArrayToBST(leftVect);
+        t->right=sortedArrayToBST(rightVect);
         return t;
+        
         
     }
 };
