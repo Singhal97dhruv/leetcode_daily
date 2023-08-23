@@ -16,16 +16,33 @@ public:
     
     vector<vector<int>>res;
     
-    void recur(vector<int>&temp,int st,int k,int n){
-        if(k==0){
+//     void recur(vector<int>&temp,int st,int k,int n){
+//         if(k==0){
             
+//             res.push_back(temp);
+//             return;
+//         }
+        
+//         for(int i=st;i<=n;i++){
+//             temp.push_back(i);
+//             recur(temp,i+1,k-1,n);
+//             temp.pop_back();
+//         }
+        
+//     }
+    
+    void recur(int n,vector<int>&temp,int k){
+        if(k==0){
             res.push_back(temp);
             return;
         }
+        if(n==0){
+            return;
+        }
         
-        for(int i=st;i<=n;i++){
+        for(int i=n;i>0;i--){
             temp.push_back(i);
-            recur(temp,i+1,k-1,n);
+            recur(i-1,temp,k-1);
             temp.pop_back();
         }
         
@@ -38,8 +55,13 @@ public:
         // combu(n,k,n);
         // return result;
         
+        // vector<int>temp;
+        // recur(temp,1,k,n);
+        // return res;
+        
+        
         vector<int>temp;
-        recur(temp,1,k,n);
+        recur(n,temp,k);
         return res;
         
     }
