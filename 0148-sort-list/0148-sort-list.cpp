@@ -11,33 +11,35 @@
 class Solution {
 public:
     
+    
     ListNode*merge(ListNode*l1,ListNode*l2){
-        ListNode*temp=new ListNode(0);
-        ListNode*res=temp;
+        
+        ListNode*dummy=new ListNode(0);
+        ListNode*temp=dummy;
         while(l1 && l2){
             if(l1->val<l2->val){
-                res->next=l1;
+                temp->next=l1;
                 l1=l1->next;
-                res=res->next;
             }
             else{
-                res->next= l2;
+              temp->next=l2;
                 l2=l2->next;
-                res=res->next;
-            }
+            } 
+            temp=temp->next;
         }
         while(l1){
-            res->next=l1;
+            temp->next=l1;
             l1=l1->next;
-            res=res->next;
+            temp=temp->next;
         }
         while(l2){
-            res->next= l2;
+            temp->next=l2;
             l2=l2->next;
-            res=res->next;
+            temp=temp->next;
         }
-        return temp->next;
+        return dummy->next;
     }
+    
     
     ListNode* sortList(ListNode* head) {
         if(!head || !head->next)return head;
@@ -58,18 +60,34 @@ public:
 //         // free(temp);
 //         return ref->next;
         
+//         ListNode*ref=NULL;
+//         ListNode*slow=head;
+//         ListNode*fast=head;
+//         while(fast && fast->next){
+//             fast=fast->next->next;
+//             ref=slow;
+//             slow=slow->next;
+
+//         }
+//         ref->next=NULL;
+//        ListNode*l1= sortList(head);
+//        ListNode*l2= sortList(slow);
+//         return merge(l1,l2);
+        
+        
         ListNode*ref=NULL;
-        ListNode*slow=head;
-        ListNode*fast=head;
+        ListNode*slow=head,*fast=head;
         while(fast && fast->next){
             fast=fast->next->next;
             ref=slow;
             slow=slow->next;
-
         }
         ref->next=NULL;
-       ListNode*l1= sortList(head);
-       ListNode*l2= sortList(slow);
+        ListNode*l1= sortList(head);
+        ListNode*l2= sortList(slow);
         return merge(l1,l2);
+        
+        
+        
     }
 };
