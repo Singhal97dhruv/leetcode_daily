@@ -1,17 +1,18 @@
 class Solution {
 public:
     
-//     int recur(vector<int>nums,int i,int bo_val,vector<vector<int>>&mem){
-//         if(i >= nums.size()) return bo_val ? 0 : -1e5;
-//         if(mem[i][bo_val]!=-1)return mem[i][bo_val];
-//         if(bo_val){
-//             return mem[i][bo_val]= max(0,nums[i]+recur(nums,i+1,true,mem));
-//         }
-//         else{
-//             return mem[i][bo_val]= max(nums[i]+recur(nums,i+1,true,mem),recur(nums,i+1,false,mem));
+
+//     int recur(int l,bool taken,vector<int>&nums){
+//         if(l>=nums.size())return 0;
+        
+//         if(taken){
+//             return max(0,nums[l]+recur(l+1,taken,nums));
 //         }
         
+//         return max(nums[l]+recur(l+1,true,nums),recur(l+1,false,nums));       
+        
 //     }
+    
     
     // int dp[100001][2];
     
@@ -64,16 +65,29 @@ public:
         // memset(dp,-1,sizeof(dp));
         // return memo(0,false,nums);
         
-        int n=nums.size();
-        memset(dp,0,sizeof(dp));
+//         int n=nums.size();
+//         memset(dp,0,sizeof(dp));
 
-        dp[0][n]=-1e5;
-        dp[1][n]=0;
-        for(int i=n-1;i>=0;i--){
-            dp[0][i]=max(dp[0][i+1],nums[i]+dp[1][i+1]);
-            dp[1][i]=max(0,nums[i]+dp[1][i+1]);
+//         dp[0][n]=-1e5;
+//         dp[1][n]=0;
+//         for(int i=n-1;i>=0;i--){
+//             dp[0][i]=max(dp[0][i+1],nums[i]+dp[1][i+1]);
+//             dp[1][i]=max(0,nums[i]+dp[1][i+1]);
+//         }
+        
+//         return max(dp[0][0],dp[0][1]);
+        
+        // return recur(0,false,nums);
+        
+        vector<vector<int>>dp(2,vector<int>(nums.size()));
+        dp[0][0]=dp[1][0]=nums[0];
+        // dp[1][0]=-1e5;
+        int n=nums.size();
+        for(int i=1;i<nums.size();i++){
+            dp[0][i]=max(nums[i],nums[i]+dp[0][i-1]);
+            dp[1][i]=max(dp[1][i-1],dp[0][i]);
         }
         
-        return max(dp[0][0],dp[0][1]);
+        return max(dp[0][n-1],dp[1][n-1]);
     }
 };
