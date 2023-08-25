@@ -30,16 +30,27 @@ public:
 //         }
         
 //         return false;
+        // int m=matrix.size(),n=matrix[0].size();
+        // int left=0,right=m*n-1;
+        // while(left<=right){
+        //     int mid=left+(right-left)/2;
+        //     int row=mid/n, col=mid%n;
+        //     if(target==matrix[row][col])return true;
+        //     else if(target<matrix[row][col])right=mid-1;
+        //     else left=mid+1;
+        // }
+        // return false;
+        
         int m=matrix.size(),n=matrix[0].size();
         int left=0,right=m*n-1;
         while(left<=right){
             int mid=left+(right-left)/2;
-            int row=mid/n, col=mid%n;
-            if(target==matrix[row][col])return true;
-            else if(target<matrix[row][col])right=mid-1;
+            int mr=mid/n,mc=mid%n;
+            
+            if(matrix[mr][mc]==target)return true;
+            if(target<matrix[mr][mc])right=mid-1;
             else left=mid+1;
         }
         return false;
-        
     }
 };
