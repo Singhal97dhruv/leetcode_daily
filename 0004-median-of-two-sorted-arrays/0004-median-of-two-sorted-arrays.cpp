@@ -34,26 +34,47 @@ public:
 //         else median=vect[count];
 //         return median;
     
-        vector<int>vect;
-        int i=0,j=0,k=0,m=nums1.size(),n=nums2.size();
-        int cnt=(m+n)%2!=0?(m+n)/2:(m+n+1)/2;
-        while(i<m && j<n && k<=cnt){
+//         vector<int>vect;
+//         int i=0,j=0,k=0,m=nums1.size(),n=nums2.size();
+//         int cnt=(m+n)%2!=0?(m+n)/2:(m+n+1)/2;
+//         while(i<m && j<n && k<=cnt){
             
-            if(nums1[i]<nums2[j]){
+//             if(nums1[i]<nums2[j]){
+//                 vect.push_back(nums1[i++]);
+//             }
+//             else vect.push_back(nums2[j++]);
+//             k++;
+//         }
+        
+//         while(i<m && k<=cnt){
+//             vect.push_back(nums1[i++]);k++;
+//         }
+//         while(j<n && k<=cnt){
+//             vect.push_back(nums2[j++]);k++;
+//         }
+        
+//         return (m+n)%2==0? ((double)vect[cnt]+vect[cnt-1])/2: vect[cnt];
+        
+        
+        vector<int>vect;
+        int m=nums1.size(),n=nums2.size();
+        int cnt;
+        cnt=((m+n)%2)==0?(m+n+1)/2:(m+n)/2;
+        int i=0,j=0,k=0;
+        while(i<m && j<n && k<=cnt){
+            if(nums1[i]<nums2[j])
                 vect.push_back(nums1[i++]);
-            }
             else vect.push_back(nums2[j++]);
             k++;
         }
-        
         while(i<m && k<=cnt){
-            vect.push_back(nums1[i++]);k++;
+            vect.push_back(nums1[i++]);
+            k++;
         }
         while(j<n && k<=cnt){
-            vect.push_back(nums2[j++]);k++;
+            vect.push_back(nums2[j++]);
+            k++;
         }
-        
-        return (m+n)%2==0? ((double)vect[cnt]+vect[cnt-1])/2: vect[cnt];
-        
+        return (m+n)%2==0? ((double)vect[cnt]+vect[cnt-1])/2:vect[cnt];
     }
 };
