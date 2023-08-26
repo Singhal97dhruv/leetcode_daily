@@ -20,26 +20,38 @@ public:
 //         }
 //         return res;
         
-        int m=nums1.size(),n=nums2.size();
+//         int m=nums1.size(),n=nums2.size();
+//         priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+//         vector<vector<int>>ans;
+//         for(int i=0;i<nums1.size();i++){
+//             pq.push({nums1[i]+nums2[0],{i,0}});
+//         }
+//         while(!pq.empty() && k-->0){
+//             int a1=pq.top().second.first;
+//             int b1=pq.top().second.second;
+//             pq.pop();
+//             vector<int>temp={nums1[a1],nums2[b1]};
+//             ans.push_back(temp);
+//             if(b1>=n-1)continue;
+//             pq.push({nums1[a1]+nums2[b1+1],{a1,b1+1}});
+//         }
+//         return ans;
+        
         priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
-        vector<vector<int>>ans;
+        vector<vector<int>>res;
         for(int i=0;i<nums1.size();i++){
             pq.push({nums1[i]+nums2[0],{i,0}});
         }
-        while(!pq.empty() && k-->0){
-            int a1=pq.top().second.first;
-            int b1=pq.top().second.second;
+        while(!pq.empty() && k--){
+            auto fst=pq.top().second.first;
+            auto snd=pq.top().second.second;
             pq.pop();
-            vector<int>temp={nums1[a1],nums2[b1]};
-            ans.push_back(temp);
-            if(b1>=n-1)continue;
-            pq.push({nums1[a1]+nums2[b1+1],{a1,b1+1}});
+            res.push_back({nums1[fst],nums2[snd]});
+            if(snd>=nums2.size()-1)continue;
+            pq.push({nums1[fst]+nums2[snd+1],{fst,snd+1}});
         }
-        return ans;
         
-        
-        
-        
+        return res;
         
     }
 };
