@@ -27,6 +27,9 @@ public:
         
 //         return nums[k-1];
         
+        // nth_element(nums.begin(),nums.begin()+k-1,nums.end(),[](int x,int y){return x>y;});
+        // return nums[k-1];
+        
         nth_element(nums.begin(),nums.begin()+k-1,nums.end(),[](int x,int y){return x>y;});
         return nums[k-1];
         
