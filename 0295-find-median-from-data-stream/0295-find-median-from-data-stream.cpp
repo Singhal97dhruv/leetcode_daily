@@ -9,13 +9,21 @@ public:
     
     void addNum(int num) {
         
+       //  mxQ.push(num);
+       //  mnQ.push(mxQ.top());
+       //  mxQ.pop();
+       // if(mnQ.size()>mxQ.size()){
+       //     mxQ.push(mnQ.top());
+       //     mnQ.pop();
+       // }
+        
         mxQ.push(num);
         mnQ.push(mxQ.top());
         mxQ.pop();
-       if(mnQ.size()>mxQ.size()){
-           mxQ.push(mnQ.top());
-           mnQ.pop();
-       }
+        if(mnQ.size()>mxQ.size()){
+            mxQ.push(mnQ.top());
+            mnQ.pop();
+        }
         
     }
     
