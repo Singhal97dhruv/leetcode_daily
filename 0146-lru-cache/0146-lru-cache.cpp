@@ -17,12 +17,11 @@ public:
         // if(map.find(key)==map.end())return -1;
         // l1.splice(l1.begin(),l1,map[key]);
         // return map[key]->second;
+     
         
         if(map.find(key)==map.end())return -1;
-        
         l1.splice(l1.begin(),l1,map[key]);
         return map[key]->second;
-        
     }
     
     void put(int key, int value) {
@@ -42,15 +41,16 @@ public:
         if(get(key)!=-1){
             map[key]->second=value;
             return;
-        } 
-        if(map.size()==cap){
+        }
+        
+        while(map.size()==cap){
             int delKey=l1.back().first;
             l1.pop_back();
             map.erase(delKey);
+            
         }
         l1.emplace_front(key,value);
         map[key]=l1.begin();
-        
         
         
     }
