@@ -22,6 +22,7 @@ public:
 //     }
     
     
+    
     int rob(vector<int>& nums) {
         // if(nums.size()==0)return 0;
         // int n1=0,n2=0;
@@ -43,12 +44,19 @@ public:
 //         return dp[0];
         // return recur(0,nums);
         
+//         int n=nums.size();
+//         dp[n-1]=nums[n-1];
+//         for(int i=n-2;i>=0;i--){
+//             dp[i]=max(dp[i+1],nums[i]+dp[i+2]);
+            
+//         }
+//         return dp[0];
         int n=nums.size();
         dp[n-1]=nums[n-1];
         for(int i=n-2;i>=0;i--){
-            dp[i]=max(dp[i+1],nums[i]+dp[i+2]);
-            
-        }
+            dp[i]=max(nums[i]+dp[i+2],dp[i+1]);
+        }  
         return dp[0];
+        
     }
 };
