@@ -21,11 +21,17 @@ public:
 //         return grp;
         
         
-        int grps=0,temp=0;
+//         int grps=0,temp=0;
 
-        while(temp<=grades.size()){
-            temp+=++grps;
-        }
-        return grps-1;
+//         while(temp<=grades.size()){
+//             temp+=++grps;
+//         }
+//         return grps-1;
+        
+        
+        int D=sqrt(1+8*grades.size());
+        int B=-1;
+        return (B+D)/2;
+        
     }
 };
