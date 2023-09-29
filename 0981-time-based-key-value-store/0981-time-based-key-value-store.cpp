@@ -12,14 +12,27 @@ public:
     }
     
     string get(string key, int timestamp) {
+        // if(map.find(key)==map.end())return "";
+        // int left=0,right=map[key].size();
+        // while(left<right){
+        //     int mid=left+(right-left)/2;
+        //     if(map[key][mid].first>timestamp)right=mid;
+        //     else left=mid+1;
+        // }
+        // return left>0 && left<=map[key].size()?map[key][left-1].second:"";
+        
+        
         if(map.find(key)==map.end())return "";
-        int left=0,right=map[key].size();
-        while(left<right){
-            int mid=left+(right-left)/2;
-            if(map[key][mid].first>timestamp)right=mid;
-            else left=mid+1;
+        int l=0,r=map[key].size();
+        while(l<r){
+            int mid=l+(r-l)/2;
+            if(timestamp<map[key][mid].first)r=mid;
+            else{
+                l=mid+1;
+            }
         }
-        return left>0 && left<=map[key].size()?map[key][left-1].second:"";
+        return l>0 && l<=map[key].size()?map[key][l-1].second:"";
+        
     }
 };
 
