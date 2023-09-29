@@ -12,17 +12,32 @@ class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
         
-       int n=0;
-        ListNode*root=head;
-        while(root){
+       // int n=0;
+       //  ListNode*root=head;
+       //  while(root){
+       //      n++;
+       //      root=root->next;
+       //  }
+       //  root=head;
+       //  for(int i=0;i<n/2;i++){
+       //      root=root->next;
+       //  }
+       //  return root;
+        
+        
+        int n=0;
+        ListNode*ptr=head;
+        while(ptr){
             n++;
-            root=root->next;
+            ptr=ptr->next;
         }
-        root=head;
+        ptr=head;
         for(int i=0;i<n/2;i++){
-            root=root->next;
+            ptr=ptr->next;
+            
         }
-        return root;
+        return ptr;
+        
         
     }
 };
