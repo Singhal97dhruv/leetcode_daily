@@ -2,34 +2,34 @@ class Solution {
 public:
     string minWindow(string s, string t) {
         
-        
-//         string res;
-//         if(s.empty() || t.empty())return res;
-//         unordered_map<char,int>map,window;
-//         for(char c:t)map[c]++;
-        
-//         int minLength=INT_MAX;
-//         int letter_count=0;
-//         for(int slow=0,fast=0;fast<s.size();fast++){
-//             char c=s[fast];
-//             if(map.find(c)!=map.end()){
-//                 window[c]++;
-//                 if(window[c]<=map[c])letter_count++;
-//             }
-        
-//         if(letter_count>=t.size()){
-//             while(map.find(s[slow])==map.end()|| window[s[slow]]>map[s[slow]]){
-//                 window[s[slow]]--;
-//                 slow++;
-//             }
-//             if(fast-slow+1<minLength){
-//                 minLength=fast-slow+1;
-//                 res=s.substr(slow,minLength);
-//             }
-//         }
-//         }
-//         return res;
-        
+
+        unordered_map<char,int>ori,dup;
+        string res;
+        for(char c: t){
+            ori[c]++;
+        }
+        int len=0,slow=0,mn=INT_MAX;
+        for(int i=0;i<s.size();i++){
+            
+            char c= s[i];
+            if(ori.find(c)!=ori.end()){
+                dup[c]++;
+                if(dup[c]<=ori[c])len++;
+            }
+            
+            if(len>=t.size()){
+                while(ori.find(s[slow])==ori.end() || ori[s[slow]]<dup[s[slow]])dup[s[slow++]]--;
+                
+                if(i-slow+1<mn){
+                    mn=min(mn,i-slow+1);
+                    res=s.substr(slow,mn);
+                }
+            }
+            
+            
+            
+        }
+        return res;
         
 //         string ans="";
 //         unordered_map<char,int>actWin,dupWin;
@@ -59,28 +59,28 @@ public:
         
 //         return ans;
         
-        unordered_map<char,int>original,Duplicate;
-        for(char c: t)
-            original[c]++;
+//         unordered_map<char,int>original,Duplicate;
+//         for(char c: t)
+//             original[c]++;
         
-        int mn=INT_MAX,len=0,slow=0;
-        string ans="";
-        for(int i=0;i<s.size();i++){
-           char c=s[i];
-            if(original.find(c)!=original.end()){
-                Duplicate[c]++;
-                if(Duplicate[c]<=original[c])len++;
-            }
-            if(len>=t.size()){
-                while(original.find(s[slow])==original.end() || original[s[slow]]<Duplicate[s[slow]]){
-                    Duplicate[s[slow++]]--;
-                }
-                if(i-slow+1<mn){
-                    mn=i-slow+1;
-                    ans=s.substr(slow,mn);
-                }
-            }
-        }
-        return ans;
+//         int mn=INT_MAX,len=0,slow=0;
+//         string ans="";
+//         for(int i=0;i<s.size();i++){
+//            char c=s[i];
+//             if(original.find(c)!=original.end()){
+//                 Duplicate[c]++;
+//                 if(Duplicate[c]<=original[c])len++;
+//             }
+//             if(len>=t.size()){
+//                 while(original.find(s[slow])==original.end() || original[s[slow]]<Duplicate[s[slow]]){
+//                     Duplicate[s[slow++]]--;
+//                 }
+//                 if(i-slow+1<mn){
+//                     mn=i-slow+1;
+//                     ans=s.substr(slow,mn);
+//                 }
+//             }
+//         }
+//         return ans;
     }
 };
