@@ -96,20 +96,32 @@ public:
 //         }
 //         return waterCollected;
         
-        int n=height.size();
-        vector<int>LeftToR(n,0),RightToL(n,0);
+//         int n=height.size();
+//         vector<int>LeftToR(n,0),RightToL(n,0);
         
+//         for(int i=1;i<n;i++){
+//             LeftToR[i]=max(LeftToR[i-1],height[i-1]);
+//         }
+//         for(int i=n-2;i>=0;i--){
+//             RightToL[i]=max(RightToL[i+1],height[i+1]);
+//         }
+        
+//         int WaterCollected=0;
+//         for(int i=0;i<n;i++){
+//             WaterCollected+=min(RightToL[i],LeftToR[i])>height[i]?min(RightToL[i],LeftToR[i])-height[i]:0;
+//         }
+//         return WaterCollected;
+        int n=height.size();
+        vector<int>ltoR(n,0),rtoL(n,0);
+        int res=0;
         for(int i=1;i<n;i++){
-            LeftToR[i]=max(LeftToR[i-1],height[i-1]);
+            ltoR[i]=max(height[i-1],ltoR[i-1]);
         }
         for(int i=n-2;i>=0;i--){
-            RightToL[i]=max(RightToL[i+1],height[i+1]);
+            rtoL[i]=max(rtoL[i+1],height[i+1]);
         }
+        for(int i=0;i<n;i++)res+=min(rtoL[i],ltoR[i])>height[i]?min(rtoL[i],ltoR[i])-height[i]:0;
         
-        int WaterCollected=0;
-        for(int i=0;i<n;i++){
-            WaterCollected+=min(RightToL[i],LeftToR[i])>height[i]?min(RightToL[i],LeftToR[i])-height[i]:0;
-        }
-        return WaterCollected;
+        return res;
     }
 };
