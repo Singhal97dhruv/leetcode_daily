@@ -33,17 +33,16 @@ public:
 //     }
     vector<vector<int>>ans;
     void recur(int idx,vector<int>&nums,vector<int>&temp){
-        if(idx>=nums.size()){
+        
+        if(idx>=nums.size())return;
+        
+        for(int i=idx;i<nums.size();i++){
+            temp.push_back(nums[i]);
             ans.push_back(temp);
-            return;
+            recur(i+1,nums,temp);
+            temp.pop_back();
         }
         
-        recur(idx+1,nums,temp);
-        
-       
-        temp.push_back(nums[idx]);
-        recur(idx+1,nums,temp);
-        temp.pop_back();
         
     }
     
@@ -55,6 +54,7 @@ public:
         // recur(0,nums,temp);
         // return res;
         vector<int>temp;
+        ans.push_back({});
         recur(0,nums,temp);
         return ans;
     }
