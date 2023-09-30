@@ -17,20 +17,19 @@ public:
     
     
 // 
-    bool recur(string s,int idx,vector<string>&words){
-        if(idx>=s.size())return true;
+//     bool recur(string s,int idx,vector<string>&words){
+//         if(idx>=s.size())return true;
         
-        bool ans=false;
+//         bool ans=false;
         
-        for(string w:words){
-            if(idx+w.size()<=s.size() && s.substr(idx,w.size())==w)
-                ans|= recur(s,idx+w.size(),words);
-        }
-        return ans;
+//         for(string w:words){
+//             if(idx+w.size()<=s.size() && s.substr(idx,w.size())==w)
+//                 ans|= recur(s,idx+w.size(),words);
+//         }
+//         return ans;
         
         
-    }
-    
+//     }
     
     
     
@@ -82,18 +81,26 @@ public:
         
         // return recur(s,0,wordDict);
         
-        for(int i=s.size()-1;i>=0;i--){
+//         for(int i=s.size()-1;i>=0;i--){
             
+//             for(string w:wordDict){
+//                 if(i+w.size()<=s.size()){
+//                     if(s.substr(i,w.size())==w)
+//                     {
+//                         dp[i]=dp[i+w.size()];
+//                         if(dp[i])break;
+//                     }
+//                 }
+//             }
+            
+//         }
+        for(int i=s.size()-1;i>=0;i--){
             for(string w:wordDict){
                 if(i+w.size()<=s.size()){
-                    if(s.substr(i,w.size())==w)
-                    {
-                        dp[i]=dp[i+w.size()];
-                        if(dp[i])break;
-                    }
+                    if(s.substr(i,w.size())==w)dp[i]=dp[i+w.size()];
+                    if(dp[i])break;
                 }
             }
-            
         }
         
         
