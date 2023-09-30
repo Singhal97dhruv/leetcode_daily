@@ -27,19 +27,34 @@ public:
 //             else mid++;
 //         }
  
-        int left=0,mid=0,right=nums.size()-1;
+        // int left=0,mid=0,right=nums.size()-1;
+        // while(mid<=right){
+        //     if(nums[mid]==0){
+        //         swap(nums[left],nums[mid]);
+        //         left++;mid++;
+        //     }
+        //     else if(nums[mid]==2){
+        //         swap(nums[mid],nums[right]);
+        //         right--;
+        //     }
+        //     else
+        //         mid++;
+        // }
+        
+        int left=0,right=nums.size()-1;
+        int mid=left;
         while(mid<=right){
-            if(nums[mid]==0){
-                swap(nums[left],nums[mid]);
-                left++;mid++;
+            if(nums[mid]==2){
+                swap(nums[mid],nums[right--]);
             }
-            else if(nums[mid]==2){
-                swap(nums[mid],nums[right]);
-                right--;
+            else if(nums[mid]==0){
+                swap(nums[mid++],nums[left++]);
             }
-            else
-                mid++;
+            else mid++;
+            
         }
+        
+        
         
     }
 };
