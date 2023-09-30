@@ -16,27 +16,46 @@ public:
 //     }
     
     
+//     void recur(int idx,vector<int>&nums,vector<int>&temp){
+//         if(idx>=nums.size()){
+//             // res.push_back(temp);
+//             return;
+//         }
+//         // recur(idx+1,nums,temp);
+        
+//         for(int i=idx;i<nums.size();i++){
+//             temp.push_back(nums[i]);
+//             res.push_back(temp);
+//             recur(i+1,nums,temp);
+//             temp.pop_back();
+//         }
+        
+//     }
+    vector<vector<int>>ans;
     void recur(int idx,vector<int>&nums,vector<int>&temp){
         if(idx>=nums.size()){
-            // res.push_back(temp);
+            ans.push_back(temp);
             return;
         }
-        // recur(idx+1,nums,temp);
         
-        for(int i=idx;i<nums.size();i++){
-            temp.push_back(nums[i]);
-            res.push_back(temp);
-            recur(i+1,nums,temp);
-            temp.pop_back();
-        }
+        recur(idx+1,nums,temp);
+        
+       
+        temp.push_back(nums[idx]);
+        recur(idx+1,nums,temp);
+        temp.pop_back();
         
     }
     
+    
     vector<vector<int>> subsets(vector<int>& nums) {
-        res.push_back({});
+        // res.push_back({});
+        // vector<int>temp;
+        // // recur(temp,nums,0);
+        // recur(0,nums,temp);
+        // return res;
         vector<int>temp;
-        // recur(temp,nums,0);
         recur(0,nums,temp);
-        return res;
+        return ans;
     }
 };
