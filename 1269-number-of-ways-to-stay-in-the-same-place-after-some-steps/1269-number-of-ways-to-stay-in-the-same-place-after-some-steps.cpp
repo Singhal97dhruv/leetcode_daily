@@ -13,6 +13,7 @@ public:
         return dp[movesLeft][i]=ans%mod;
     }
     
+    
     int numWays(int steps, int arrLen) {
         dp.resize(steps+1,vector<int>(steps/2+1,-1));
        return memo(0,steps,arrLen);
