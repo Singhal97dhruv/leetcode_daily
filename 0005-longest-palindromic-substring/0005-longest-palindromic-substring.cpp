@@ -6,12 +6,16 @@ public:
 //         return s.substr(i+1,j-i-1);
 //     }
     
-    string findPalindromic(string s,int i,int j){
+    
+    
+    
+    string longest(int i,int j,string s){
         while(i>=0 && j<s.size() && s[i]==s[j]){
             i--,j++;
         }
         return s.substr(i+1,j-i-1);
     }
+    
     
     string longestPalindrome(string s) {
 //         int len = s.size();
@@ -58,17 +62,25 @@ public:
 //         }
 //         return res;
         
-        string res="";
+//         string res="";
         
-        for(int i=0;i<s.size();i++){
+//         for(int i=0;i<s.size();i++){
             
-            string res1=findPalindromic(s,i,i);
+//             string res1=findPalindromic(s,i,i);
+//             if(res1.size()>res.size())res=res1;
+//             string res2=findPalindromic(s,i,i+1);
+//             if(res2.size()>res.size())res=res2;
+//         }
+//         return res;
+        
+        string res="";
+        for(int i=0;i<s.size();i++){
+            string res1=longest(i,i,s);
             if(res1.size()>res.size())res=res1;
-            string res2=findPalindromic(s,i,i+1);
+            string res2=longest(i,i+1,s);
             if(res2.size()>res.size())res=res2;
         }
-        return res;
-        
+        return res;        
         
     }
 };
