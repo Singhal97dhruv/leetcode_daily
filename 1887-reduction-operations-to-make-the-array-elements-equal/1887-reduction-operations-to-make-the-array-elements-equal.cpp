@@ -1,23 +1,12 @@
 class Solution {
 public:
     int reductionOperations(vector<int>& nums) {
-        
-        priority_queue<pair<int,int>>pq;
-        unordered_map<int,int>map;
-        
-        int cnt=0;
-        
-        for(int i:nums){
-            map[i]++;
-        }
-        for(auto i:map){
-            pq.push({i.first,i.second});
-        }
-        while(pq.size()>1){
-            auto temp=pq.top();pq.pop();
-            cnt+=temp.second;
-            auto nxt=pq.top();pq.pop();
-            pq.push({nxt.first,nxt.second+temp.second});
+        int n=nums.size();
+      sort(nums.begin(),nums.end());
+        int smallest=nums[0],prev=nums[n-1];
+        int cnt=0,tmpCnt=0;
+        for(int i=n-1;i>0;i--){
+            if(nums[i]!=nums[i-1])cnt+=n-i;
         }
         return cnt;
     }
