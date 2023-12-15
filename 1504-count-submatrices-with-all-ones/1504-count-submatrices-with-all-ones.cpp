@@ -1,29 +1,29 @@
 class Solution {
 public:
     
-    int subs(int a,int b,vector<vector<int>>&mat){
-        int m=mat.size(),n=mat[0].size();
-        int cnt=0,limit=n;
-        for(int i=a;i<m;i++){
-            for(int j=b;j<limit;j++){
-                if(mat[i][j])
-                    cnt++;
-                else
-                    limit=j;
-            }
-            if(b==limit)return cnt;
+    int countIN1d(vector<int>&h){
+        int len=0,res=0;
+        for(int i:h){
+            len=i==0?0:len+1;
+            res+=len;
         }
-        return cnt;
+        return res;
     }
     
     int numSubmat(vector<vector<int>>& mat) {
         
-        int ans=0;
-        for(int i=0;i<mat.size();i++){
-            for(int j=0;j<mat[0].size();j++){
-                ans+=subs(i,j,mat);
+        int res=0;
+        
+        for(int up=0;up<mat.size();up++){
+            vector<int>h(mat[0].size(),1);
+            for(int down=up;down<mat.size();down++){
+                for(int k=0;k<mat[0].size();k++)h[k]&=mat[down][k];
+                
+            
+            res+=countIN1d(h);
             }
         }
-        return ans;
+        
+        return res;
     }
 };
